@@ -29,12 +29,7 @@ export default function Search_content({mangaList}) {
               
                 <div className="absolute inset-0 flex flex-col items-start justify-end p-6">
                   <h3 className="text-xl font-medium text-white">{Manga.title}</h3>
-              
-                  {/* <p className="mt-1.5 text-pretty text-xs text-white">
-                    {
-                      Manga.synopsis.length > 100 ? Manga.synopsis.substring(0, 100) + "..." : Manga.synopsis}
-                  </p> */}
-              
+                  
                   <span
                     className="mt-3 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
                   >

@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Card({topManga}) {
   return (
     <div>
-      <a href="#" className="group relative block">
+      <Link to="#" className="group relative block">
   <div className="relative h-[350px] sm:h-[450px]">
     <img
       src={topManga.images.jpg.image_url}
@@ -31,7 +32,7 @@ export default function Card({topManga}) {
       Buy Now
     </span>
   </div>
-</a>
+</Link>
     </div>
   )
 }

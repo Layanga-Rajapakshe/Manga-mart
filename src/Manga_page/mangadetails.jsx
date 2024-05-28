@@ -1,13 +1,13 @@
 import React from 'react'
 
-export default function Mangadetails() {
+export default function Mangadetails({manga}) {
   return (
     <div>
       <div className="flow-root">
   <dl className="-my-3 divide-y divide-gray-100 text-sm">
     <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
       <dt className="font-medium text-gray-900">Title</dt>
-      <dd className="text-gray-700 sm:col-span-2">Mr</dd>
+      <dd className="text-gray-700 sm:col-span-2">{manga.title}</dd>
     </div>
 
     <div className="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
