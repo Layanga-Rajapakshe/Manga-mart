@@ -4,7 +4,7 @@ import Mangadetails from './mangadetails';
 export default function Mangacard({ manga }) {
   return (
     <div>
-      <a href="#" className="block">
+      <a href={manga.images.jpg.image_url} className="block">
         {manga.images && manga.images.jpg && (
           <img
             alt="Manga Cover"
