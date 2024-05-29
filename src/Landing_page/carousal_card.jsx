@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Carousal_card({items}) {
   return (
-    <a href="#" className="group block">
+    <Link to={`/manga/${items.mal_id}`} className="group block">
   <img
     src={items.images.jpg.image_url}
     alt="manga image"
@@ -25,6 +26,6 @@ export default function Carousal_card({items}) {
         ))}
 
   </div>
-</a>
+</Link>
   )
 }

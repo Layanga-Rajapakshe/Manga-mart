@@ -1,9 +1,11 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import Card from './card';
+import Carousel from '../Landing_page/carousal';
 
 export default function Homepage() {
   const [topManga, SetTopManga] = useState([]);
+  const [items2, SetTopMagazines] = useState([]);
     
   
   const GetTopManga = async () => {
@@ -12,9 +14,18 @@ export default function Homepage() {
 
     SetTopManga(temp.data.slice(0, 8));
   }
+  const GetTopMagazines = async () => {
+    const temp = await fetch(`https://api.jikan.moe/v4/seasons/upcoming`)
+      .then(res => res.json());
+
+    SetTopMagazines(temp.data.slice(0, 20));
+  }
 
   useEffect(() => {
     GetTopManga();
+  }, []);
+  useEffect(() => {
+    GetTopMagazines();
   }, []);
 
   return (
@@ -31,6 +42,12 @@ export default function Homepage() {
 					<Card key={manga.id} topManga={manga}/>
 				))}
         </div>
+        <section className="relative py-12 bg-white sm:py-16 lg:py-20">
+          <div>
+            <h1 className="text-3xl font-bold text-center mt-8 text-black">Upcoming</h1>
+            <Carousel items={items2} />
+          </div>
+        </section>
     </div>
 </section>
 

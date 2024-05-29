@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [expanded, setExpanded] = useState(false);
@@ -8,9 +9,9 @@ const Navbar = () => {
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <div className="shrink-0">
-            <a href="#" title="" className="flex" id="top">
+            <Link to="/" title="" className="flex" id="top">
               <img className="w-auto h-9" src="src/assets/web_logo.png" alt="MangaMatrix" />
-            </a>
+            </Link>
           </div>
 
           <div className="flex md:hidden">
@@ -30,19 +31,19 @@ const Navbar = () => {
           </div>
 
           <nav className={`hidden md:flex md:items-center md:justify-end md:space-x-12 ${expanded ? 'flex' : 'hidden'}`}>
-            <a href="#" title="" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> Home Page </a>
-            <a href="#" title="" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> About Us </a>
-            <a href="#" title="" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> Genres </a>
-            <a
+            <Link to="/home" title="" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> Home Page </Link>
+            <Link to="/about" title="" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> About Us </Link>
+            <Link to="#" title="" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> Genres </Link>
+            <Link
                className="group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75"
-                href="#"
+                to="signup"
                 >
                <span
                 className="block rounded-full bg-gray-900 px-8 py-3 text-sm font-medium group-hover:bg-transparent"
                >
                 Sign Up
                 </span>
-              </a>
+              </Link>
           </nav>
         </div>
 
