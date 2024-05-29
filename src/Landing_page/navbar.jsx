@@ -1,8 +1,34 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
 
 const Navbar = () => {
   const [expanded, setExpanded] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const [genres, setGenres] = useState([])
+
+  const getGenres = async () => {
+    const response = await fetch("https://api.jikan.moe/v4/genres/manga")
+    const data = await response.json()
+    setGenres(data.data)
+}
+
+  useEffect(() => {
+    getGenres()
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className="py-4 bg-gray-900 sm:py-4" style={{ marginBottom: '0px' }}>
@@ -33,7 +59,27 @@ const Navbar = () => {
           <nav className={`hidden md:flex md:items-center md:justify-end md:space-x-12 ${expanded ? 'flex' : 'hidden'}`}>
             <Link to="/home" title="" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> Home Page </Link>
             <Link to="/about" title="" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> About Us </Link>
-            <Link to="#" title="" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> Genres </Link>
+            <div className="relative" ref={dropdownRef}>
+        <button
+          onClick={() => setDropdownOpen(!dropdownOpen)}
+          className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
+        >
+          Genres
+        </button>
+        {dropdownOpen && (
+          <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg z-10">
+            {genres.map((item, index) => (
+                      <Link
+                      to="#"
+                      className="block px-4 py-2 text-sm text-gray-400 hover:bg-gray-700 hover:text-white"
+                    >
+                      {item.name}
+                    </Link>
+        ))}
+            {/* Add more genres as needed */}
+          </div>
+        )}
+      </div>
             <Link
                className="group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75"
                 to="signup"
@@ -49,10 +95,30 @@ const Navbar = () => {
 
         <nav style={{ display: expanded ? 'block' : 'none' }}>
           <div className="flex flex-col pt-8 pb-4 space-y-6">
-            <a href="#" title="" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> Home Page </a>
-            <a href="#" title="" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> About Us </a>
-            <a href="#" title="" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> Genres </a>
-            <a href="#" title="" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> SignUp </a>
+            <Link to="/home" title="" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> Home Page </Link>
+            <Link to="/about" title="" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> About Us </Link>
+            <div className="relative" ref={dropdownRef}>
+        <button
+          onClick={() => setDropdownOpen(!dropdownOpen)}
+          className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"
+        >
+          Genres
+        </button>
+        {dropdownOpen && (
+          <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg z-10">
+            {genres.map((item, index) => (
+                      <Link
+                      to="#"
+                      className="block px-4 py-2 text-sm text-gray-400 hover:bg-gray-700 hover:text-white"
+                    >
+                      {item.name}
+                    </Link>
+        ))}
+            {/* Add more genres as needed */}
+          </div>
+        )}
+      </div>
+            <Link to="/signup" title="" className="text-base font-normal text-gray-400 transition-all duration-200 hover:text-white"> SignUp </Link>
           </div>
         </nav>
       </div>
