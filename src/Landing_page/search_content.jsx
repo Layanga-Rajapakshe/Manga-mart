@@ -13,7 +13,7 @@ export default function Search_content({mangaList}) {
     <div class="grid grid-cols-2 gap-6 mt-10 lg:mt-16 lg:gap-4 lg:grid-cols-4 px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         {mangaList.map(Manga => (
 					<div>
-                    <Link to={`/manga/${Manga.mal_id}`} className="group relative block">
+                    <Link to={`/product/${Manga.mal_id}`} className="group relative block">
                 <div className="relative h-[350px] sm:h-[450px]">
                   <img
                     src={Manga.images.jpg.image_url}

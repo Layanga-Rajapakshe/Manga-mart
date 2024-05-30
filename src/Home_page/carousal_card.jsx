@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function Carousal_card({items}) {
   return (
-    <Link to={`/manga/${items.mal_id}`} className="group block">
+    <Link to={`/product/${items.mal_id}`} className="group block">
   <img
     src={items.images.jpg.image_url}
     alt="manga image"

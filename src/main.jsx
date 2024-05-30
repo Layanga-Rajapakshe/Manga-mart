@@ -13,6 +13,7 @@ import Manga from './Manga_page/manga.jsx'
 import Signuppage from './Login_page/signuppage.jsx'
 import Loginpage from './Login_page/loginpage.jsx'
 import Genrepage from './Genres/genrepage.jsx'
+import Product from './Product_page/product.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -28,6 +29,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/signup' element={<Signuppage />} />
           <Route path='/login' element={<Loginpage />} />
           <Route path="/manga/:id" element={<Manga />} />
+          <Route path='/product/:id' element={<Product />} />
           {/* <Route path="/genres/:id" element={<Genrepage />} /> */}
         </Routes>
       </div>
