@@ -13,9 +13,10 @@ import Signuppage from './Login_page/signuppage.jsx'
 import Loginpage from './Login_page/loginpage.jsx'
 import Product from './Product_page/product.jsx'
 import { Toaster } from 'react-hot-toast'
-import Dashboard from './Dashboard/dashboard.jsx'
 import { Provider } from 'react-redux'
 import store from './redux/store.js'
+import Settings from './Profile/settings.jsx'
+import Favourites from './Profile/favourites.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -31,7 +32,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               <Route path='/signup' element={<Signuppage />} />
               <Route path='/login' element={<Loginpage />} />
               <Route path='/product/:id' element={<Product />} />
-              <Route path='/dashboard' element={<Dashboard />} />
+              <Route path='/settings' element={<Settings />} />
+              <Route path='/wishlist' element={<Favourites />} />
             </Routes>
             <Toaster />
           </div>

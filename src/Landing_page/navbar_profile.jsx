@@ -36,21 +36,21 @@ const UserMenu = ({ userInfo, logoutHandler }) => {
             <div className="mt-0 py-2 first:pt-3 last:pb-3">
               <a
                 className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-                href="/profile"
+                href="/settings"
               >
                 Account settings
               </a>
               <a
                 className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-                href="#"
+                href="/cart"
               >
                 Cart
               </a>
               <a
                 className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-                href="#"
+                href="/wishlist"
               >
-                Support
+                Your wishlist
               </a>
               <button
                 onClick={logoutHandler}

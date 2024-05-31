@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useLoginMutation } from "../redux/api/usersApiSlice";
 import { setCredentials } from "../redux/features/authSlice";
+import toast from "react-hot-toast";
 
 
 export default function Loginpage() {
@@ -33,6 +34,7 @@ export default function Loginpage() {
       console.log(res);
       dispatch(setCredentials({ ...res }));
       navigate(redirect);
+      toast.success("Login Success");
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }

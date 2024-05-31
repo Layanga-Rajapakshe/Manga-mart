@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLogoutMutation } from '../redux/api/usersApiSlice';
 import { logout } from '../redux/features/authSlice';
 import Navbar_profile from './navbar_profile';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -23,8 +24,9 @@ const Navbar = () => {
       await logoutApiCall().unwrap();
       dispatch(logout());
       navigate('/login');
+      toast.success('Logged out successfully');
     } catch (error) {
-      console.error(error);
+      toast.error('Failed to logout');
     }
   };
 

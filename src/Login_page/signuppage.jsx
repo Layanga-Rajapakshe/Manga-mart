@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useRegisterMutation } from "../redux/api/usersApiSlice";
 import { setCredentials } from "../redux/features/authSlice";
+import { toast } from "react-hot-toast";
 
 export default function SignupPage() {
   const [username, setName] = useState("");
