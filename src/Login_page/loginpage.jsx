@@ -1,31 +1,42 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import useLogin from '../hooks/useLogin';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useLoginMutation } from "../redux/api/usersApiSlice";
+import { setCredentials } from "../redux/features/authSlice";
 
 
 export default function Loginpage() {
-  const [inputs, setInputs] = useState({
-    username: '',
-    password: ''
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const { loading, login } = useLogin();
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const [login, { isLoading }] = useLoginMutation();
+
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const { search } = useLocation();
+  const sp = new URLSearchParams(search);
+  const redirect = sp.get("redirect") || "/";
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [navigate, redirect, userInfo]);
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    await handleLogin(inputs); // Call handleLogin instead of login directly
-  };
-
-  const handleLogin = async (credentials) => {
-    const { success } = await login(credentials); // Destructure success directly
-    if (success) {
-      // Navigate to the dashboard or any other route
-      navigate('/dashboard'); // Use navigate instead of Navigate
+    try {
+      const res = await login({ email, password }).unwrap();
+      console.log(res);
+      dispatch(setCredentials({ ...res }));
+      navigate(redirect);
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
     }
   };
-
 
   return (
     <div>
@@ -90,22 +101,22 @@ export default function Loginpage() {
                 </p>
               </div>
               <form
-                onSubmit={handleSubmit}
+                onSubmit={submitHandler}
                 className="mt-8 grid grid-cols-6 gap-6"
               >
                 <div className="col-span-6">
                   <label
-                    htmlFor="Username"
+                    htmlFor="email"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Username
+                    Email
                   </label>
                   <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    value={inputs.username}
-                    onChange={(e) => setInputs({ ...inputs, username: e.target.value })}
+                    type="email"
+                    id="email"
+                    placeholder="Enter email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
@@ -119,9 +130,9 @@ export default function Loginpage() {
                   <input
                     type="password"
                     id="password"
-                    name="password"
-                    value={inputs.password}
-                    onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
+                    placeholder="Enter password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
@@ -150,10 +161,10 @@ export default function Loginpage() {
                     </Link>
                     <button
                       type="submit"
-                      disabled={loading}
+                      disabled={isLoading}
                       className="inline-block rounded-lg bg-blue-600 px-5 py-3 text-sm font-medium text-white"
                     >
-                      {loading ? 'Please wait...' : 'Login'}
+                      {isLoading ? 'Please wait...' : 'Login'}
                     </button>
                   </div>
                 </div>

@@ -6,7 +6,6 @@ import Card from './Home_page/card';
 import Homepage from './Home_page/homepage';
 import Loginpage from './Login_page/loginpage';
 import Aboutpage from './About_page/aboutpage';
-import Manga from './Manga_page/manga';
 
 function App() {
   return (

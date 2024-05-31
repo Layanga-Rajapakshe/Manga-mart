@@ -1,25 +1,48 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import useSignup from '../hooks/useSignup';
+import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useRegisterMutation } from "../redux/api/usersApiSlice";
+import { setCredentials } from "../redux/features/authSlice";
 
 export default function SignupPage() {
-  const [inputs, setInputs] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
+  const [username, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const { loading, signup } = useSignup();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInputs({ ...inputs, [name]: value });
-  };
+  const [register, { isLoading }] = useRegisterMutation();
 
-  const handleSubmit = async (e) => {
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const { search } = useLocation();
+  const sp = new URLSearchParams(search);
+  const redirect = sp.get("redirect") || "/";
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [navigate, redirect, userInfo]);
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    await signup(inputs);
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+    } else {
+      try {
+        const res = await register({ username, email, password }).unwrap();
+        dispatch(setCredentials({ ...res }));
+        navigate(redirect);
+        toast.success("User successfully registered");
+      } catch (err) {
+        console.log(err);
+        toast.error(err.data.message);
+      }
+    }
   };
 
   return (
@@ -84,17 +107,16 @@ export default function SignupPage() {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-6 gap-6">
+              <form onSubmit={submitHandler} className="mt-8 grid grid-cols-6 gap-6">
                 <div className="col-span-6">
                   <label htmlFor="username" className="block text-sm font-medium text-gray-700">
                     Username
                   </label>
                   <input
                     type="text"
-                    name="username"
                     id="username"
-                    value={inputs.username}
-                    onChange={handleChange}
+                    value={username}
+                    onChange={(e) => setName(e.target.value)}
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
@@ -105,10 +127,9 @@ export default function SignupPage() {
                   </label>
                   <input
                     type="email"
-                    name="email"
                     id="email"
-                    value={inputs.email}
-                    onChange={handleChange}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
@@ -121,8 +142,8 @@ export default function SignupPage() {
                     type="password"
                     name="password"
                     id="password"
-                    value={inputs.password}
-                    onChange={handleChange}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
@@ -133,10 +154,9 @@ export default function SignupPage() {
                   </label>
                   <input
                     type="password"
-                    name="confirmPassword"
                     id="confirmPassword"
-                    value={inputs.confirmPassword}
-                    onChange={handleChange}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
@@ -144,10 +164,10 @@ export default function SignupPage() {
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                   <button
                     type="submit"
-                    disabled={loading}
+                    disabled={isLoading}                    
                     className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
                   >
-                    {loading ? 'Loading...' : 'Create an account'}
+                    {isLoading ? 'Loading...' : 'Create an account'}
                   </button>
 
                   <p className="mt-4 text-sm text-gray-500 sm:mt-0">

@@ -52,11 +52,11 @@ function HeroSection() {
     return (
       <div>
         <section className="relative py-12 bg-blue-900 sm:py-16 lg:py-20">
-          <div class="absolute inset-0">
-              <img class="object-cover object-right w-full h-full lg:object-center" src="src/assets/landingpagephoto.png" alt="" />
+          <div className="absolute inset-0">
+              <img className="object-cover object-right w-full h-full lg:object-center" src="src/assets/landingpagephoto.png" alt="" />
         </div>
 
-        <div class="absolute inset-0 bg-gray-900 bg-opacity-40"></div>
+        <div className="absolute inset-0 bg-gray-900 bg-opacity-40"></div>
 
           <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
             <div className="relative">
@@ -65,17 +65,17 @@ function HeroSection() {
                 <p className="max-w-lg mt-4 text-xl font-normal text-gray-400 sm:mt-8">Embark on an epic voyage through our Manga Store, where adventure awaits at every turn. </p>
 
               <div className='max-w-xl mt-4'>
-                <div class="overflow-hidden z-0 rounded-full relative p-3">
-                    <form role="form" class="relative flex z-50 rounded-full" onSubmit={HandleSearch} >
+                <div className="overflow-hidden z-0 rounded-full relative p-3">
+                    <form role="form" className="relative flex z-50 rounded-full" onSubmit={HandleSearch} >
                       <input type="search" placeholder="Find your manga here ..." className="rounded-full flex-1 px-6 py-4 text-gray-700 focus:outline-none bg-gray-200" 
                         value={search}
                         onChange={e => SetSearch(e.target.value)}/>
-                      <button class="bg-gradient-to-r from-blue-900 to-blue-600 text-white rounded-full font-semibold px-8 py-4 hover:bg-blue-400 focus:bg-blue-600 focus:outline-none">Search</button>
+                      <button className="bg-gradient-to-r from-blue-900 to-blue-600 text-white rounded-full font-semibold px-8 py-4 hover:bg-blue-400 focus:bg-blue-600 focus:outline-none">Search</button>
                     </form>
-                    <div class="glow glow-1 z-10 animate-glow1 bg-red-400 rounded-100 w-120 h-120 -top-10 -left-10 absolute"></div>
-                    <div class="glow glow-2 z-20 animate-glow2 bg-green-400 rounded-100 w-120 h-120 -top-10 -left-10 absolute"></div>
-                    <div class="glow glow-3 z-30 animate-glow3 bg-yellow-400 rounded-100 w-120 h-120 -top-10 -left-10 absolute"></div>
-                    <div class="glow glow-4 z-40 animate-glow4 bg-blue-500 rounded-100 w-120 h-120 -top-10 -left-10 absolute"></div>
+                    <div className="glow glow-1 z-10 animate-glow1 bg-red-400 rounded-100 w-120 h-120 -top-10 -left-10 absolute"></div>
+                    <div className="glow glow-2 z-20 animate-glow2 bg-green-400 rounded-100 w-120 h-120 -top-10 -left-10 absolute"></div>
+                    <div className="glow glow-3 z-30 animate-glow3 bg-yellow-400 rounded-100 w-120 h-120 -top-10 -left-10 absolute"></div>
+                    <div className="glow glow-4 z-40 animate-glow4 bg-blue-500 rounded-100 w-120 h-120 -top-10 -left-10 absolute"></div>
                 </div>
               </div>
 
