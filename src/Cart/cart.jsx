@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../redux/features/cartSlice";
+import { FaTrash } from "react-icons/fa";
 
 export default function Cart() {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ export default function Cart() {
                 <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
 
                 {cartItems.map((item) => (
-                  <div key={item.mal_id} className="flex items-center mb-4 pb-2 border-b">
+                  <div key={item._id} className="flex items-center mb-4 pb-2 border-b">
                     <div className="w-[5rem] h-[5rem]">
                       <img
                         src={item.images.jpg.image_url}
@@ -76,8 +77,9 @@ export default function Cart() {
                     <div>
                       <button
                         className="text-red-500 ml-4"
-                        onClick={() => removeFromCartHandler(item.mal_id)}
+                        onClick={() => removeFromCartHandler(item._id)}
                       >
+                        <FaTrash />
                       </button>
                     </div>
                   </div>

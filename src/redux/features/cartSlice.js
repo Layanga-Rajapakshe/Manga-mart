@@ -20,7 +20,7 @@ const cartSlice = createSlice({
       } else {
         state.cartItems = [...state.cartItems, item];
       }
-      return updateCart(state, item);
+      return updateCart(state);
     },
 
     removeFromCart: (state, action) => {
@@ -30,20 +30,26 @@ const cartSlice = createSlice({
 
     saveShippingAddress: (state, action) => {
       state.shippingAddress = action.payload;
-      localStorage.setItem("cart", JSON.stringify(state));
+      return updateCart(state);
     },
 
     savePaymentMethod: (state, action) => {
       state.paymentMethod = action.payload;
-      localStorage.setItem("cart", JSON.stringify(state));
+      return updateCart(state);
     },
 
-    clearCartItems: (state, action) => {
+    clearCartItems: (state) => {
       state.cartItems = [];
-      localStorage.setItem("cart", JSON.stringify(state));
+      return updateCart(state);
     },
 
-    resetCart: (state) => (state = initialState),
+    resetCart: (state) => {
+      state.cartItems = [];
+      state.shippingAddress = {};
+      state.paymentMethod = "PayPal";
+      localStorage.removeItem("cart");
+      return state;
+    },
   },
 });
 
