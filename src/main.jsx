@@ -17,6 +17,7 @@ import { Provider } from 'react-redux'
 import store from './redux/store.js'
 import Settings from './Profile/settings.jsx'
 import Favourites from './Profile/favourites.jsx'
+import Cart from './Cart/cart.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -34,6 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               <Route path='/product/:id' element={<Product />} />
               <Route path='/settings' element={<Settings />} />
               <Route path='/wishlist' element={<Favourites />} />
+              <Route path='/cart' element={<Cart />} />
             </Routes>
             <Toaster />
           </div>
