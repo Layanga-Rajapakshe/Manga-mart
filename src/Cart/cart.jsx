@@ -1,23 +1,13 @@
 import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "../redux/features/cartSlice";
-import { FaTrash } from "react-icons/fa";
+import {  useSelector } from "react-redux";
+import Cartcard from "./cartcard";
 
 export default function Cart() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-
-  const addToCartHandler = (product, qty) => {
-    dispatch(addToCart({ ...product, qty }));
-  };
-
-  const removeFromCartHandler = (id) => {
-    dispatch(removeFromCart(id));
-  };
 
   const checkoutHandler = () => {
     navigate("/login?redirect=/shipping");
@@ -41,48 +31,8 @@ export default function Cart() {
               <div className="flex flex-col w-full lg:w-[80%] mx-auto mt-8">
                 <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
 
-                {cartItems.map((item) => (
-                  <div key={item._id} className="flex items-center mb-4 pb-2 border-b">
-                    <div className="w-[5rem] h-[5rem]">
-                      <img
-                        src={item.images.jpg.image_url}
-                        alt="manga cover"
-                        className="w-full h-full object-cover rounded"
-                      />
-                    </div>
-
-                    <div className="flex-1 ml-4">
-                      <Link to={`/product/${item._id}`} className="text-pink-500">
-                        {item.title}
-                      </Link>
-
-                      <div className="mt-2 text-white">{item.brand}</div>
-                      <div className="mt-2 text-white font-bold">$58.00</div>
-                    </div>
-
-                    <div className="w-24">
-                      <select
-                        className="w-full p-1 border rounded text-black"
-                        value={item.qty}
-                        onChange={(e) => addToCartHandler(item, Number(e.target.value))}
-                      >
-                        {[...Array(item.countInStock).keys()].map((x) => (
-                          <option key={x + 1} value={x + 1}>
-                            {x + 1}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div>
-                      <button
-                        className="text-red-500 ml-4"
-                        onClick={() => removeFromCartHandler(item._id)}
-                      >
-                        <FaTrash />
-                      </button>
-                    </div>
-                  </div>
+                {cartItems.map((item,index) => (
+                  <Cartcard key={index} item={item}/>
                 ))}
 
                 <div className="mt-8 w-full lg:w-[40rem] mx-auto">
@@ -96,7 +46,7 @@ export default function Cart() {
                     </div>
 
                     <button
-                      className="bg-pink-500 mt-4 py-2 px-4 rounded-full text-lg w-full"
+                      className="bg-blue-700 hover:bg-blue-500 text-white mt-4 py-2 px-4 rounded-full text-lg w-full"
                       disabled={cartItems.length === 0}
                       onClick={checkoutHandler}
                     >
