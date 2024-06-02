@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/features/cartSlice';
 import { toast } from 'react-hot-toast';
 import ProductDetails from './product_details';
+import Favourite_button from './favourite_button';
 
 export default function Product() {
   const { id } = useParams();
@@ -31,10 +32,7 @@ export default function Product() {
 
   const addToCartHandler = (product, qty) => {
     dispatch(addToCart({ ...product, qty }));
-    toast.success('Item added successfully', {
-      position: 'top-right',  // Corrected position value
-      autoClose: 2000,
-    });
+    toast.success('Item added successfully');
   };
 
   useEffect(() => {
@@ -83,22 +81,11 @@ export default function Product() {
               </span>
               <button
                 onClick={() => addToCartHandler(manga, 1)}
-                className="flex ml-auto text-white bg-blue-700 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
+                className="flex ml-auto text-white bg-blue-700 border-0 py-2 px-6 focus:outline-none hover:bg-blue-400 rounded"
               >
                 Add to cart
               </button>
-              <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-                <svg
-                  fill="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  className="w-5 h-5"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-                </svg>
-              </button>
+              <Favourite_button product={manga}/>
             </div>
           </div>
         </div>

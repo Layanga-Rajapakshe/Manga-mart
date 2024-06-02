@@ -1,6 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
+import { selectFavoriteProduct } from '../redux/features/favouriteSlice';
+import Card from '../Home_page/card';
 
 function favourites() {
+
+  const favorites = useSelector(selectFavoriteProduct);
+
   return (
     <div>
       <section className="py-12 bg-white sm:py-16 lg:py-20">
@@ -11,26 +17,9 @@ function favourites() {
             </div>
 
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                <div className="relative flex flex-col items-center justify-center w-full h-80 bg-gray-100 rounded-lg">
-                    <img className="w-32 h-32 rounded-full" src="https://cdn.myanimelist.net/images/manga/3/196671.jpg" alt="Manga cover" />
-                    <p className="mt-4 text-sm font-medium text-gray-900">One Piece</p>
-                    <p className="mt-1 text-sm font-normal text-gray-600">Eiichiro Oda</p>
-                </div>
-                <div className="relative flex flex-col items-center justify-center w-full h-80 bg-gray-100 rounded-lg">
-                    <img className="w-32 h-32 rounded-full" src="https://cdn.myanimelist.net/images/manga/3/196671.jpg" alt="Manga cover" />
-                    <p className="mt-4 text-sm font-medium text-gray-900">One Piece</p>
-                    <p className="mt-1 text-sm font-normal text-gray-600">Eiichiro Oda</p>
-                </div>
-                <div className="relative flex flex-col items-center justify-center w-full h-80 bg-gray-100 rounded-lg">
-                    <img className="w-32 h-32 rounded-full" src="https://cdn.myanimelist.net/images/manga/3/196671.jpg" alt="Manga cover" />
-                    <p className="mt-4 text-sm font-medium text-gray-900">One Piece</p>
-                    <p className="mt-1 text-sm font-normal text-gray-600">Eiichiro Oda</p>
-                </div>
-                <div className="relative flex flex-col items-center justify-center w-full h-80 bg-gray-100 rounded-lg">
-                    <img className="w-32 h-32 rounded-full" src="https://cdn.myanimelist.net/images/manga/3/196671.jpg" alt="Manga cover" />
-                    <p className="mt-4 text-sm font-medium text-gray-900">One Piece</p>
-                    <p className="mt-1 text-sm font-normal text-gray-600">Eiichiro Oda</p>
-                </div>
+                {favorites.map((product) => (
+                  <Card key={product.mal_id} topManga={product} />
+                ))}
             </div>
         </div>
       </section>
