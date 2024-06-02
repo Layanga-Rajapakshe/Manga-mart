@@ -18,6 +18,10 @@ import store from './redux/store.js'
 import Settings from './Profile/settings.jsx'
 import Favourites from './Profile/favourites.jsx'
 import Cart from './Cart/cart.jsx'
+import PrivateRoute from "./Components/PrivateRoute";
+import Shipping from './Orders/shipping.jsx'
+import PlaceOrder from './Orders/placeorder.jsx'
+import Order from './Orders/order.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -33,9 +37,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               <Route path='/signup' element={<Signuppage />} />
               <Route path='/login' element={<Loginpage />} />
               <Route path='/product/:id' element={<Product />} />
-              <Route path='/settings' element={<Settings />} />
               <Route path='/wishlist' element={<Favourites />} />
               <Route path='/cart' element={<Cart />} />
+
+              <Route path='' element={<PrivateRoute/>} >
+                <Route path='/settings' element={<Settings />} />
+                <Route path='/shipping' element={<Shipping />} />
+                <Route path='/placeorder' element={<PlaceOrder />} />
+                <Route path='/order/:id' element={<Order />} />
+              </Route>
+
             </Routes>
             <Toaster />
           </div>
