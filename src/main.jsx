@@ -22,6 +22,7 @@ import PrivateRoute from "./Components/PrivateRoute";
 import Shipping from './Orders/shipping.jsx'
 import PlaceOrder from './Orders/placeorder.jsx'
 import Order from './Orders/order.jsx'
+import Hero from './Video_hero_page/hero.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -31,7 +32,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Navbar />
           <div className='main-content'>
             <Routes>
-              <Route path="/" element={<HeroSection />} />
+              <Route path="/test" element={<HeroSection />} />
+              <Route path="/" element={<Hero />} />
               <Route path='/home' element={<Homepage />} />
               <Route path='/about' element={<Aboutpage />} />
               <Route path='/signup' element={<Signuppage />} />
