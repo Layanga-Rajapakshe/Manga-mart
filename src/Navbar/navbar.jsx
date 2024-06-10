@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLogoutMutation } from '../redux/api/usersApiSlice';
 import { logout } from '../redux/features/authSlice';
-import NavbarProfile from './navbar_profile';
+import NavbarProfile from '../Landing_page/navbar_profile';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet';
 
@@ -84,11 +84,98 @@ const Navbar = () => {
       </Helmet>
 
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          <div className="shrink-0">
-            <Link to="/" className="flex" id="top">
+
+        <div className='flex items-center justify-between'>
+
+        <nav className={`hidden md:flex md:items-center md:space-x-12 ${expanded ? 'block' : 'hidden'}`}>
+            <Link to="/home" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200">
+              Home Page
+            </Link>
+            <Link to="/about" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200">
+              About Us
+            </Link>
+            <div className="relative" ref={genresDropdownRef}>
+              <button
+                onClick={() => setGenresDropdownOpen(!genresDropdownOpen)}
+                className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200"
+              >
+                Genres
+              </button>
+              {genresDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg z-10">
+                  {genres.map((item, index) => (
+                    <Link
+                      key={index}
+                      to="#"
+                      className="block px-4 py-2 text-sm text-gray-400 hover:bg-gray-700 hover:text-white"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+          </nav>
+
+          <div className="shrink-0 justify-center">
+            <Link to="/" className="flex " id="top">
             <h1 style={{ fontFamily: 'Gang of Three, sans-serif' }} className='text-white text-3xl'>Manga Mart</h1>
             </Link>
+          </div>
+
+          <div>
+            <NavbarProfile userInfo={userInfo} logoutHandler={handleLogout} />
+
+            {!userInfo && (
+            <Link
+                className={`${
+                isLandingPage
+                    ? color
+                    ? 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
+                    : 'border-2 rounded-full text-gray-300 px-8 py-3 hover:bg-white hover:text-black'
+                    : 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
+                } transition-all duration-500`}
+                to="/signup"
+            >
+                <span
+                className={`${
+                    isLandingPage
+                    ? color
+                        ? 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
+                        : 'bg-transparent'
+                    : 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
+                } transition-all duration-500`}
+                >
+                Log in
+                </span>
+            </Link>
+            )}
+
+            {!userInfo && (
+            <Link
+                className={`${
+                isLandingPage
+                    ? color
+                    ? 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
+                    : 'border-2 rounded-full text-gray-300 px-8 py-3 hover:bg-white hover:text-black'
+                    : 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
+                } transition-all duration-500`}
+                to="/signup"
+            >
+                <span
+                className={`${
+                    isLandingPage
+                    ? color
+                        ? 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
+                        : 'bg-transparent'
+                    : 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
+                } transition-all duration-500`}
+                >
+                Sign Up
+                </span>
+            </Link>
+            )}
           </div>
 
           <div className="flex md:hidden">
@@ -123,62 +210,6 @@ const Navbar = () => {
             </button>
           </div>
 
-          <nav className={`hidden md:flex md:items-center md:space-x-12 ${expanded ? 'block' : 'hidden'}`}>
-            <Link to="/home" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200">
-              Home Page
-            </Link>
-            <Link to="/about" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200">
-              About Us
-            </Link>
-            <div className="relative" ref={genresDropdownRef}>
-              <button
-                onClick={() => setGenresDropdownOpen(!genresDropdownOpen)}
-                className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200"
-              >
-                Genres
-              </button>
-              {genresDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg z-10">
-                  {genres.map((item, index) => (
-                    <Link
-                      key={index}
-                      to="#"
-                      className="block px-4 py-2 text-sm text-gray-400 hover:bg-gray-700 hover:text-white"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <NavbarProfile userInfo={userInfo} logoutHandler={handleLogout} />
-
-            {!userInfo && (
-              <Link
-                className={`${
-                  isLandingPage
-                    ? color
-                      ? 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
-                      : 'border-2 rounded-full text-gray-300 px-8 py-3 hover:bg-white hover:text-black'
-                    : 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
-                } transition-all duration-500`}
-                to="/signup"
-              >
-                <span
-                  className={`${
-                    isLandingPage
-                      ? color
-                        ? 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
-                        : 'bg-transparent'
-                      : 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
-                  } transition-all duration-500`}
-                >
-                  Sign Up
-                </span>
-              </Link>
-            )}
-          </nav>
         </div>
 
         <nav className={expanded ? 'block' : 'hidden'}>

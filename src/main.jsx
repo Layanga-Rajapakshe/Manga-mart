@@ -5,7 +5,7 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import { Routes, Route } from 'react-router-dom'
 import Homepage from './Home_page/homepage.jsx'
-import Navbar from './Landing_page/navbar.jsx'
+// import Navbar from './Landing_page/navbar.jsx'
 import Footer from './Landing_page/footer.jsx'
 import HeroSection from './Landing_page/hero.jsx'
 import Aboutpage from './About_page/aboutpage.jsx'
@@ -23,6 +23,7 @@ import Shipping from './Orders/shipping.jsx'
 import PlaceOrder from './Orders/placeorder.jsx'
 import Order from './Orders/order.jsx'
 import Hero from './Video_hero_page/hero.jsx'
+import Navbar from './Navbar/navbar.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
