@@ -83,9 +83,9 @@ const Navbar = () => {
             <Link to="/home" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200">
               Home Page
             </Link>
-            <Link to="/about" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200">
+            {/* <Link to="/about" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200">
               About Us
-            </Link>
+            </Link> */}
             <div className="relative" ref={genresDropdownRef}>
               <button
                 onClick={() => setGenresDropdownOpen(!genresDropdownOpen)}
@@ -108,7 +108,7 @@ const Navbar = () => {
               )}
             </div>
           </nav>
-          <div className="shrink-0 justify-center">
+          <div className="shrink-0 justify-center pr-12">
             <Link to="/" className="flex" id="top">
               <h1 style={{ fontFamily: 'Gang of Three, sans-serif' }} className="text-white text-4xl">
                 {`${ !color ? 'Manga Mart': 'M'}`}

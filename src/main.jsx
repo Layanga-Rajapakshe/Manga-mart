@@ -24,10 +24,13 @@ import PlaceOrder from './Orders/placeorder.jsx'
 import Order from './Orders/order.jsx'
 import Hero from './Video_hero_page/hero.jsx'
 import Navbar from './Navbar/navbar.jsx'
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import Profile from './Profile/profile.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider store={store}>  
+    <Provider store={store}> 
+      <PayPalScriptProvider>
       <BrowserRouter>
         <div>
           <Navbar />
@@ -44,6 +47,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               <Route path='/cart' element={<Cart />} />
 
               <Route path='' element={<PrivateRoute/>} >
+                <Route path='/profile' element={<Profile />} />
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/shipping' element={<Shipping />} />
                 <Route path='/placeorder' element={<PlaceOrder />} />
@@ -56,6 +60,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Footer />
         </div>
       </BrowserRouter>
+      </PayPalScriptProvider> 
     </Provider>
   </React.StrictMode>,
 )

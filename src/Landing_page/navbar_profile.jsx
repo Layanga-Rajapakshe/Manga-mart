@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { CgProfile } from "react-icons/cg";
+import { Link } from 'react-router-dom';
 
 const UserMenu = ({ userInfo, logoutHandler }) => {
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
@@ -29,9 +31,14 @@ const UserMenu = ({ userInfo, logoutHandler }) => {
 
         {userDropdownOpen && (
           <div className="absolute right-0 mt-12 w-56 divide-y divide-gray-100 rounded-md border border-gray-100 bg-white shadow-lg z-10" role="menu">
-            <div className="py-3 px-5 bg-gray-100 rounded-t-lg">
+            <div className="flex items-center space-x-16 py-3 px-5 bg-gray-100 rounded-t-lg">
+              <div>
               <p className="text-sm text-gray-500">Signed in as</p>
               <p className="text-sm font-medium text-gray-800">{userInfo.username}</p>
+              </div>
+              <Link to='/profile'>
+                <CgProfile className='text-4xl'/>
+              </Link>
             </div>
             <div className="mt-0 py-2 first:pt-3 last:pb-3">
               <a

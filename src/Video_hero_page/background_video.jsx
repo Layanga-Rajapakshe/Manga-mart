@@ -38,7 +38,7 @@ const BackgroundVideo = ({ videos }) => {
       <div className="relative z-10 flex items-center h-full justify-center">
         <div className="text-center">
         <h1 className="text-white text-6xl font-bold ">Explore Our Famous Manga Here</h1>
-        <button className=" mt-5 text-white font-semibold px-8 py-4 hover:bg-white hover:text-black hover:border-gray-800 border-4 rounded-2xl " onClick={handleExplore}>Explore</button>
+        <button className=" mt-5 text-white font-semibold px-8 py-4 hover:bg-white hover:text-black border-4 rounded-2xl " onClick={handleExplore}>Explore</button>
         </div>
       </div>
     </div>

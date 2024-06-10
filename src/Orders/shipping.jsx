@@ -39,8 +39,9 @@ export default function shipping() {
     }, [navigate, shippingAddress]);
 
   return (
-    <div className="mt-10 container mx-auto">
+    <div className="pt-24">
       <ProgressSteps step1 step2 />
+    <div className="container mx-auto pt-12">
       <div className="mb-20 mt-10 flex justify-around items-center flex-wrap">
         <form onSubmit={submitHandler} className="w-[40rem]">
           <h1 className="text-2xl font-semibold mb-4">Shipping</h1>
@@ -107,13 +108,16 @@ export default function shipping() {
           </div>
 
           <button
-            className="bg-blue-600 text-white py-2 px-4 rounded-full text-lg w-full hover:bg-blue-500 "
+            className="bg-blue-600 text-white py-2 px-4 rounded-full text-lg hover:bg-blue-500 "
             type="submit"
           >
-            Continue
+            <span className=""> 
+              Continue
+            </span>
           </button>
         </form>
       </div>
+    </div>
     </div>
   )
 }

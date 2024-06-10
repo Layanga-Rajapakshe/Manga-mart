@@ -44,10 +44,10 @@ const PlaceOrder = () => {
   
 
   return (
-    <>
+    <div className="pt-24">
       <ProgressSteps step1 step2 step3 />
 
-      <div className="container mx-auto mt-8">
+      <div className="container mx-auto my-12">
         {cart.cartItems.length === 0 ? (
           <Message>Your cart is empty</Message>
         ) : (
@@ -130,11 +130,13 @@ const PlaceOrder = () => {
 
           <button
             type="button"
-            className="bg-pink-500 text-white py-2 px-4 rounded-full text-lg w-full mt-4"
+            className="bg-blue-600 hover:bg-blue-500 text-white py-2 px-4 rounded-full text-lg w-full mt-4"
             disabled={cart.cartItems === 0}
             onClick={placeOrderHandler}
           >
-            Place Order
+            <span className="">
+              Place Order
+            </span>
           </button>
 
           {isLoading && (
@@ -147,7 +149,7 @@ const PlaceOrder = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
