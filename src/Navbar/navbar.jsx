@@ -10,15 +10,12 @@ import { Helmet } from 'react-helmet';
 const Navbar = () => {
   const location = useLocation();
   const isLandingPage = location.pathname === '/';
-
   const [color, setColor] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [genresDropdownOpen, setGenresDropdownOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
-
   const genresDropdownRef = useRef(null);
   const userDropdownRef = useRef(null);
-
   const { userInfo } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,7 +25,6 @@ const Navbar = () => {
     const handleScroll = () => {
       setColor(window.scrollY >= 20);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -55,7 +51,6 @@ const Navbar = () => {
         setUserDropdownOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -80,14 +75,11 @@ const Navbar = () => {
       } transition-all duration-500`}
     >
       <Helmet>
-          <link href="https://fonts.cdnfonts.com/css/gang-of-three" rel="stylesheet" />
+        <link href="https://fonts.cdnfonts.com/css/gang-of-three" rel="stylesheet" />
       </Helmet>
-
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-
-        <div className='flex items-center justify-between'>
-
-        <nav className={`hidden md:flex md:items-center md:space-x-12 ${expanded ? 'block' : 'hidden'}`}>
+        <div className="flex items-center justify-between">
+          <nav className={`hidden md:flex md:items-center md:space-x-12 ${expanded ? 'block' : 'hidden'}`}>
             <Link to="/home" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200">
               Home Page
             </Link>
@@ -115,69 +107,65 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-
           </nav>
-
           <div className="shrink-0 justify-center">
-            <Link to="/" className="flex " id="top">
-            <h1 style={{ fontFamily: 'Gang of Three, sans-serif' }} className='text-white text-3xl'>Manga Mart</h1>
+            <Link to="/" className="flex" id="top">
+              <h1 style={{ fontFamily: 'Gang of Three, sans-serif' }} className="text-white text-4xl">
+                {`${ !color ? 'Manga Mart': 'M'}`}
+              </h1>
             </Link>
           </div>
-
-          <div>
-            <NavbarProfile userInfo={userInfo} logoutHandler={handleLogout} />
-
+          <div className="hidden md:flex space-x-2">
             {!userInfo && (
-            <Link
-                className={`${
-                isLandingPage
-                    ? color
-                    ? 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
-                    : 'border-2 rounded-full text-gray-300 px-8 py-3 hover:bg-white hover:text-black'
-                    : 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
-                } transition-all duration-500`}
-                to="/signup"
-            >
-                <span
-                className={`${
+              <>
+                <Link
+                  className={`${
                     isLandingPage
-                    ? color
-                        ? 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
-                        : 'bg-transparent'
-                    : 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
-                } transition-all duration-500`}
+                      ? color
+                        ? 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
+                        : 'border-2 rounded-full text-gray-300 px-8 py-3 hover:bg-white hover:text-black'
+                      : 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
+                  } transition-all duration-500`}
+                  to="/login"
                 >
-                Log in
-                </span>
-            </Link>
-            )}
-
-            {!userInfo && (
-            <Link
-                className={`${
-                isLandingPage
-                    ? color
-                    ? 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
-                    : 'border-2 rounded-full text-gray-300 px-8 py-3 hover:bg-white hover:text-black'
-                    : 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
-                } transition-all duration-500`}
-                to="/signup"
-            >
-                <span
-                className={`${
+                  <span
+                    className={`${
+                      isLandingPage
+                        ? color
+                          ? 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
+                          : 'bg-transparent'
+                        : 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
+                    } transition-all duration-500`}
+                  >
+                    Log in
+                  </span>
+                </Link>
+                <Link
+                  className={`${
                     isLandingPage
-                    ? color
-                        ? 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
-                        : 'bg-transparent'
-                    : 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
-                } transition-all duration-500`}
+                      ? color
+                        ? 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
+                        : 'border-2 rounded-full text-gray-300 px-8 py-3 hover:bg-white hover:text-black'
+                      : 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
+                  } transition-all duration-500`}
+                  to="/signup"
                 >
-                Sign Up
-                </span>
-            </Link>
+                  <span
+                    className={`${
+                      isLandingPage
+                        ? color
+                          ? 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
+                          : 'bg-transparent'
+                        : 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
+                    } transition-all duration-500`}
+                  >
+                    Sign Up
+                  </span>
+                </Link>
+              </>
             )}
+            {userInfo && <NavbarProfile userInfo={userInfo} logoutHandler={handleLogout} />}
           </div>
-
           <div className="flex md:hidden">
             <button
               type="button"
@@ -209,11 +197,9 @@ const Navbar = () => {
               </span>
             </button>
           </div>
-
         </div>
-
-        <nav className={expanded ? 'block' : 'hidden'}>
-          <div className="flex flex-col pt-8 pb-4 space-y-6">
+        <nav className={`${expanded ? 'block' : 'hidden'} transition-all duration-300`}>
+          <div className="flex flex-col place-items-center pt-8 pb-4 space-y-6 bg-gray-800 ">
             <Link to="/home" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200">
               Home Page
             </Link>
@@ -241,14 +227,17 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-
-            <NavbarProfile userInfo={userInfo} logoutHandler={handleLogout} />
-
+            {userInfo && <NavbarProfile userInfo={userInfo} logoutHandler={handleLogout} />}
             {!userInfo && (
-              <Link to="/signup" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200">
-                Sign Up
-              </Link>
-            )}
+              <>
+              <Link to="/login" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200">
+              <strong>Log in</strong>
+            </Link>
+            <Link to="/signup" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200">
+            <strong>Sign up</strong>
+            </Link>
+            </>
+          )}
           </div>
         </nav>
       </div>
