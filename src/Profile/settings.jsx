@@ -1,9 +1,15 @@
 import React from 'react'
+import Sidebar from './profile_sidebar'
 
 export default function settings() {
   return (
-    <div className='pt-12'>
-        <section className="bg-white">
+    <div className="container mx-auto flex pt-24 pb-5">
+    <Sidebar />
+    {/* Main content */}
+    <div className="flex-1 bg-gray-200">
+      {/* Your main content goes here */}
+      <div className=''>
+        <section className="">
         <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
             <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
             <img
@@ -97,5 +103,7 @@ export default function settings() {
         </div>
         </section>
     </div>
+    </div>
+  </div>
   )
 }

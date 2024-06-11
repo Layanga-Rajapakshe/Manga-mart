@@ -2,14 +2,20 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { selectFavoriteProduct } from '../redux/features/favouriteSlice';
 import Card from '../Home_page/card';
+import Sidebar from './profile_sidebar';
 
 function favourites() {
 
   const favorites = useSelector(selectFavoriteProduct);
 
   return (
-    <div className='pt-12'>
-      <section className="py-12 bg-white sm:py-16 lg:py-20">
+    <div className="container mx-auto flex pt-24 pb-5">
+    <Sidebar />
+    {/* Main content */}
+    <div className="flex-1 bg-gray-200">
+      {/* Your main content goes here */}
+      <div className=''>
+      <section className="py-12 sm:py-16 lg:py-20">
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
             <div className="max-w-md mx-auto text-center">
                 <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">Your Favourite Manga</h2>
@@ -24,6 +30,8 @@ function favourites() {
         </div>
       </section>
     </div>
+    </div>
+  </div>
   )
 }
 

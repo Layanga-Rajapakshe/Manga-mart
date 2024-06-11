@@ -1,6 +1,6 @@
 import React from 'react'
 import './profile_sidebar'
-import ProfileSidebar from './profile_sidebar'
+
 import Sidebar from './profile_sidebar'
 
 function profile() {

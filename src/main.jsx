@@ -25,7 +25,8 @@ import Order from './Orders/order.jsx'
 import Hero from './Video_hero_page/hero.jsx'
 import Navbar from './Navbar/navbar.jsx'
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-import Profile from './Profile/profile.jsx'
+import Profile from './Profile/profile.jsx';
+import Orders from './Profile/profile_orders.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -43,8 +44,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
               <Route path='/signup' element={<Signuppage />} />
               <Route path='/login' element={<Loginpage />} />
               <Route path='/product/:id' element={<Product />} />
-              <Route path='/wishlist' element={<Favourites />} />
-              <Route path='/cart' element={<Cart />} />
 
               <Route path='' element={<PrivateRoute/>} >
                 <Route path='/profile' element={<Profile />} />
@@ -52,6 +51,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 <Route path='/shipping' element={<Shipping />} />
                 <Route path='/placeorder' element={<PlaceOrder />} />
                 <Route path='/order/:id' element={<Order />} />
+                <Route path='/orders' element={<Orders />} />
+                <Route path='/wishlist' element={<Favourites />} />
+                <Route path='/cart' element={<Cart />} />
               </Route>
 
             </Routes>

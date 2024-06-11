@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import {  useSelector } from "react-redux";
 import Cartcard from "./cartcard";
+import Sidebar from '../Profile/profile_sidebar';
 
 export default function Cart() {
   const navigate = useNavigate();
@@ -14,8 +15,13 @@ export default function Cart() {
   };
 
   return (
-    <div className='pt-12'>
-      <section className="py-12 bg-white sm:py-16 lg:py-20">
+    <div className="container mx-auto flex pt-24 pb-5">
+    <Sidebar />
+    {/* Main content */}
+    <div className="flex-1 bg-gray-200">
+      {/* Your main content goes here */}
+      <div className=''>
+      <section className="py-12 sm:py-16 lg:py-20">
         <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
           <div className="max-w-md mx-auto text-center">
             <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">Your Cart</h2>
@@ -60,5 +66,7 @@ export default function Cart() {
         </div>
       </section>
     </div>
+    </div>
+  </div>
   );
 }
