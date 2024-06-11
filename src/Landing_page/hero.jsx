@@ -1,12 +1,15 @@
 import React, { useState , useEffect} from 'react';
 import Carousel from './carousal';
 import Search_content from './search_content';
+import Loader from '../Components/Loader';
 
 function HeroSection() {
   const [items1, SetTopManga] = useState([]); 
   const [items2, SetTopMagazines] = useState([]);
   const [search, SetSearch] = useState("");
   const [mangaList, SetMangaList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
 
   const GetTopManga = async () => {
     const temp = await fetch(`https://api.jikan.moe/v4/top/manga`)
@@ -41,6 +44,13 @@ function HeroSection() {
       console.error('Failed to fetch manga:', error);
     }
   };
+  useEffect(() => {
+    // Simulate a data fetch
+    setTimeout(() => {
+      setData({ message: 'Data loaded successfully!' });
+      setLoading(false);
+    }, 5000); // 5 seconds delay
+  }, []);
 
   useEffect(() => {
     GetTopManga();
@@ -51,6 +61,8 @@ function HeroSection() {
 
     return (
       <div>
+        {loading ? <Loader /> : 
+        <div>
         <section className="relative py-12 bg-blue-900 sm:py-16 lg:py-20">
           <div className="absolute inset-0">
               <img className="object-cover object-right w-full h-full lg:object-center" src="src/assets/landingpagephoto.png" alt="" />
@@ -108,8 +120,8 @@ function HeroSection() {
             <Carousel items={items2} />
           </div>
         </section>
-
-        </div>
+        </div>}
+      </div>
       );
 }
 

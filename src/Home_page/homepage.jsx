@@ -3,12 +3,15 @@ import { useState, useEffect } from 'react';
 import Card from './card';
 import Carousel from './carousal';
 import Search_content from './search_content';
+import Loader from '../Components/Loader';
 
 export default function Homepage() {
   const [topManga, SetTopManga] = useState([]);
   const [items2, SetTopMagazines] = useState([]);
   const [search, SetSearch] = useState("");
   const [mangaList, SetMangaList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
 
   const HandleSearch = e => {
     e.preventDefault();
@@ -45,6 +48,14 @@ export default function Homepage() {
   }
 
   useEffect(() => {
+    // Simulate a data fetch
+    setTimeout(() => {
+      setData({ message: 'Data loaded successfully!' });
+      setLoading(false);
+    }, 5000); // 5 seconds delay
+  }, []);
+
+  useEffect(() => {
     GetTopManga();
   }, []);
   useEffect(() => {
@@ -53,7 +64,9 @@ export default function Homepage() {
 
   return (
     <div className='pt-10'>
-      <section className="py-12 bg-white sm:py-16 lg:py-20">
+      {loading ? <Loader /> : 
+      <div>
+              <section className="py-12 bg-white sm:py-16 lg:py-20">
     <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="max-w-md mx-auto text-center">
             <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">Our featured Manga</h2>
@@ -124,8 +137,8 @@ export default function Homepage() {
           </div>
         </section>
     </div>
-</section>
-
+      </section>
+        </div>}
     </div>
   )
 }

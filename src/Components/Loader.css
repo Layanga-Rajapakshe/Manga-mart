@@ -1,0 +1,23 @@
+/* src/components/Loader.css */
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full screen height */
+    background-color: #282c34; /* Background color to make it stand out */
+    color: white; /* Text color */
+    font-family: 'Gang of Three', sans-serif; /* Font for a typewriter effect */
+    font-size: 2rem; /* Font size */
+  }
+  
+  .loader-text {
+    border-right: 2px solid white; /* Cursor effect */
+    animation: blink-caret 0.75s step-end infinite;
+  }
+  
+  /* Cursor blink effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: white; }
+  }
+  

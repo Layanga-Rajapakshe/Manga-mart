@@ -108,7 +108,7 @@ const Navbar = () => {
               )}
             </div>
           </nav>
-          <div className="shrink-0 justify-center pr-12">
+          <div className={` ${userInfo ? 'pr-16' : 'pl-12'} shrink-0 justify-center`}>
             <Link to="/" className="flex transition-all duration-500" id="top">
               {!color ? (
                 <h1 style={{ fontFamily: 'Gang of Three, sans-serif' }} className="text-white text-4xl">
