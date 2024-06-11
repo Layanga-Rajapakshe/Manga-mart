@@ -80,7 +80,7 @@ const Navbar = () => {
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <nav className={`hidden md:flex md:items-center md:space-x-12 ${expanded ? 'block' : 'hidden'}`}>
-            <Link to="/home" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200">
+            <Link to="/home" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-500">
               Home Page
             </Link>
             {/* <Link to="/about" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200">
@@ -109,10 +109,18 @@ const Navbar = () => {
             </div>
           </nav>
           <div className="shrink-0 justify-center pr-12">
-            <Link to="/" className="flex" id="top">
-              <h1 style={{ fontFamily: 'Gang of Three, sans-serif' }} className="text-white text-4xl">
-                {`${ !color ? 'Manga Mart': 'M'}`}
-              </h1>
+            <Link to="/" className="flex transition-all duration-500" id="top">
+              {!color ? (
+                <h1 style={{ fontFamily: 'Gang of Three, sans-serif' }} className="text-white text-4xl">
+                  Manga Mart
+                </h1>
+              ) : (
+                <img 
+                  src='src/assets/web_logo_bg_removed.png' 
+                  alt='web_logo'
+                  className='h-16'
+                />
+              )}
             </Link>
           </div>
           <div className="hidden md:flex space-x-2">

@@ -3,7 +3,7 @@ import Aboutcard from './aboutcard'
 
 export default function Aboutpage() {
   return (
-    <div className='pt-12'>
+    <div className='pt-14'>
       <section class="bg-white dark:bg-gray-900">
     <div class="container px-6 py-10 mx-auto">
         <div class="xl:flex xl:items-center xL:-mx-4">
