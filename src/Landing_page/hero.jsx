@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react';
+import { useState , useEffect} from 'react';
 import Carousel from './carousal';
 import Search_content from './search_content';
 import Loader from '../Components/Loader';

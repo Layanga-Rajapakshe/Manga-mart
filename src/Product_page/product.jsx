@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/features/cartSlice';
 import { toast } from 'react-hot-toast';
 import ProductDetails from './product_details';
 import Favourite_button from './favourite_button';
+import Loader from '../Components/Loader';
 
 export default function Product() {
   const { id } = useParams();
   const [manga, setManga] = useState({});
   const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
   const dispatch = useDispatch();
@@ -36,18 +38,20 @@ export default function Product() {
   };
 
   useEffect(() => {
+    // Simulate a data fetch
+    setTimeout(() => {
+      setData({ message: 'Data loaded successfully!' });
+      setLoading(false);
+    }, 5000); // 5 seconds delay
+  }, []);
+
+  useEffect(() => {
     getManga(id);
   }, [id]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
   return (
+    <div>
+      {loading ? <Loader /> :
     <section className="text-gray-700 body-font overflow-hidden bg-white pt-12">
       <div className="container px-5 py-24 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
@@ -91,5 +95,7 @@ export default function Product() {
         </div>
       </div>
     </section>
+      }
+    </div>
   );
 }

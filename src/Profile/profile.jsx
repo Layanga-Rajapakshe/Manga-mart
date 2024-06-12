@@ -1,9 +1,10 @@
 import React from 'react'
-import './profile_sidebar'
-
 import Sidebar from './profile_sidebar'
+import { useSelector } from 'react-redux'
 
 function profile() {
+  const { userInfo } = useSelector((state) => state.auth);
+
   return (
     <div className="container mx-auto flex pt-24 pb-5">
       <Sidebar />
