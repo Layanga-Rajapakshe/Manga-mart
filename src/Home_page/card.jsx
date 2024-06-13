@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
 
 export default function Card({topManga}) {
   return (
@@ -19,6 +20,8 @@ export default function Card({topManga}) {
     />
   </div>
 
+  <div className='absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent'></div>
+
   <div className="absolute inset-0 flex flex-col items-start justify-end p-6">
     <h3 className="text-xl font-medium text-white">{topManga.title}</h3>
 
@@ -27,9 +30,9 @@ export default function Card({topManga}) {
     </p>
 
     <span
-      className="mt-3 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
+      className="mt-3 inline-block bg-gray-700 px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
     >
-      Buy Now
+       Read More
     </span>
   </div>
 </Link>
