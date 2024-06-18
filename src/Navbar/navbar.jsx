@@ -6,6 +6,7 @@ import { logout } from '../redux/features/authSlice';
 import NavbarProfile from '../Landing_page/navbar_profile';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet';
+import SearchBar from './searchbar';
 
 const Navbar = () => {
   const location = useLocation();
@@ -84,17 +85,17 @@ const Navbar = () => {
       </Helmet>
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          <nav className={`hidden md:flex md:items-center md:space-x-12 ${expanded ? 'block' : 'hidden'}`}>
-            <Link to="/home" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-500">
+          <nav className={`hidden lg:flex md:items-center md:space-x-12 ${expanded ? 'block' : 'hidden'}`}>
+            <Link to="/home" className="text-sm font-normal text-gray-400 hover:text-white transition-all duration-500">
               Home Page
             </Link>
-            {/* <Link to="/about" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200">
+            <Link to="/about" className="text-sm font-normal text-gray-400 hover:text-white transition-all duration-200">
               About Us
-            </Link> */}
+            </Link>
             <div className="relative" ref={genresDropdownRef}>
               <button
                 onClick={() => setGenresDropdownOpen(!genresDropdownOpen)}
-                className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200"
+                className="text-sm font-normal text-gray-400 hover:text-white transition-all duration-200"
               >
                 Genres
               </button>
@@ -116,7 +117,7 @@ const Navbar = () => {
               )}
             </div>
           </nav>
-          <div className={` ${userInfo ? 'pr-16' : 'pl-12'} shrink-0 justify-center`}>
+          <div className={` ${userInfo ? 'pr-16' : 'pl-16'} shrink-0 justify-center`}>
             <Link to="/" className="flex transition-all duration-500" id="top">
               {!color ? (
                 <h1 style={{ fontFamily: 'Gang of Three, sans-serif' }} className="text-white text-4xl">
@@ -131,16 +132,17 @@ const Navbar = () => {
               )}
             </Link>
           </div>
-          <div className="hidden md:flex space-x-2">
+          <div className="hidden lg:flex space-x-2">
+          <SearchBar />
             {!userInfo && (
               <>
                 <Link
                   className={`${
                     isLandingPage
                       ? color
-                        ? 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
-                        : 'border-2 rounded-full text-gray-300 px-8 py-3 hover:bg-white hover:text-black'
-                      : 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
+                        ? 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[4px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
+                        : 'border-2 rounded-full text-gray-300 px-4 py-3 hover:bg-white hover:text-black'
+                      : 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[4px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
                   } transition-all duration-500`}
                   to="/login"
                 >
@@ -148,9 +150,9 @@ const Navbar = () => {
                     className={`${
                       isLandingPage
                         ? color
-                          ? 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
+                          ? 'block rounded-full px-4 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
                           : 'bg-transparent'
-                        : 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
+                        : 'block rounded-full px-4 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
                     } transition-all duration-500`}
                   >
                     Log in
@@ -160,9 +162,9 @@ const Navbar = () => {
                   className={`${
                     isLandingPage
                       ? color
-                        ? 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
-                        : 'border-2 rounded-full text-gray-300 px-8 py-3 hover:bg-white hover:text-black'
-                      : 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[2px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
+                        ? 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[4px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
+                        : 'border-2 rounded-full text-gray-300 px-5 py-3 hover:bg-white hover:text-black'
+                      : 'group inline-block rounded-full bg-gradient-to-r from-blue-900 to-blue-600 p-[4px] text-gray-400 hover:text-white focus:outline-none focus:ring active:text-opacity-75'
                   } transition-all duration-500`}
                   to="/signup"
                 >
@@ -170,9 +172,9 @@ const Navbar = () => {
                     className={`${
                       isLandingPage
                         ? color
-                          ? 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
+                          ? 'block rounded-full px-5 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
                           : 'bg-transparent'
-                        : 'block rounded-full px-8 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
+                        : 'block rounded-full px-5 py-3 text-sm font-medium group-hover:bg-transparent bg-gray-900'
                     } transition-all duration-500`}
                   >
                     Sign Up
@@ -182,7 +184,7 @@ const Navbar = () => {
             )}
             {userInfo && <NavbarProfile userInfo={userInfo} logoutHandler={handleLogout} />}
           </div>
-          <div className="flex md:hidden">
+          <div className="flex lg:hidden">
             <button
               type="button"
               className="text-white"
@@ -214,8 +216,10 @@ const Navbar = () => {
             </button>
           </div>
         </div>
+        
         <nav className={`${expanded ? 'block' : 'hidden'} transition-all duration-300`}>
           <div className="flex flex-col place-items-center pt-8 pb-4 space-y-6 bg-gray-800 ">
+            <SearchBar />
             <Link to="/home" className="text-base font-normal text-gray-400 hover:text-white transition-all duration-200">
               Home Page
             </Link>

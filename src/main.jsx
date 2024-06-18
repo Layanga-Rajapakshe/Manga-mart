@@ -28,6 +28,7 @@ import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import Profile from './Profile/profile.jsx';
 import Orders from './Profile/profile_orders.jsx';
 import Genrepage from './Genres/genrepage.jsx';
+import Search from './Search_page.jsx/search.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -46,6 +47,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 <Route path="/login" element={<Loginpage />} />
                 <Route path="/product/:id" element={<Product />} />
                 <Route path="/genre/:name/:genre" element={<Genrepage />} />
+                <Route path="/search/:query" element={<Search />} />
 
                 <Route path="" element={<PrivateRoute />}>
                   <Route path="/profile" element={<Profile />} />
