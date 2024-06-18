@@ -26,3 +26,15 @@ export const addDecimals = (num) => {
   
     return state;
   };
+
+  //get cart items from cart in local storage
+export const getCartItems = () => {
+    return localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart"))
+      : { cartItems: [] };
+  };
+
+  //get count of items in cart
+export const getCartCount = () => {
+    return getCartItems().cartItems.reduce((acc, item) => acc + item.qty, 0);
+  };

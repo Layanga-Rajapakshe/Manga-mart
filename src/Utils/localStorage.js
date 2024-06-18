@@ -22,3 +22,9 @@ export const addFavoriteToLocalStorage = (product) => {
     const favoritesJSON = localStorage.getItem("favorites");
     return favoritesJSON ? JSON.parse(favoritesJSON) : [];
   };
+
+  //get favourites count from local storage
+  export const getFavoritesCount = () => {
+    const favorites = getFavoritesFromLocalStorage();
+    return favorites.length;
+  };

@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { CgProfile } from "react-icons/cg";
 import { Link } from 'react-router-dom';
+import { getFavoritesCount} from '../Utils/localStorage';
+import { getCartCount } from '../Utils/cartUtils';
 
 const UserMenu = ({ userInfo, logoutHandler }) => {
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
-
+  const cartCount = getCartCount();
+  const wishlistCount = getFavoritesCount();
+  
   return (
     userInfo && (
       <div className="relative inline-flex">
@@ -51,13 +55,15 @@ const UserMenu = ({ userInfo, logoutHandler }) => {
                 className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
                 href="/cart"
               >
-                Cart
+                <span>Cart</span>
+                <span className="ml-2 bg-red-500 text-white rounded-full px-2 py-0.5 text-xs">{cartCount}</span>
               </a>
               <a
                 className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
                 href="/wishlist"
               >
-                Your wishlist
+                <span>Your wishlist</span>
+                <span className="ml-2 bg-red-500 text-white rounded-full px-2 py-0.5 text-xs">{wishlistCount}</span>
               </a>
               <button
                 onClick={logoutHandler}
@@ -65,6 +71,7 @@ const UserMenu = ({ userInfo, logoutHandler }) => {
               >
                 Logout
               </button>
+
             </div>
           </div>
         )}
