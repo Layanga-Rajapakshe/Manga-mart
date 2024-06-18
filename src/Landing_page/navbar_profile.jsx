@@ -8,6 +8,7 @@ const UserMenu = ({ userInfo, logoutHandler }) => {
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const cartCount = getCartCount();
   const wishlistCount = getFavoritesCount();
+  const totalCount = cartCount + wishlistCount;
   
   return (
     userInfo && (
@@ -17,6 +18,11 @@ const UserMenu = ({ userInfo, logoutHandler }) => {
           className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border-none text-gray-300 shadow-sm hover:text-gray-50 disabled:opacity-50 disabled:pointer-events-none"
         >
           Options
+          {totalCount > 0 && (
+            <span className="ml-2 bg-red-500 text-white rounded-full px-2 py-0.5 text-xs">
+              {totalCount}
+            </span>
+          )}
           <svg
             className={`transform transition-transform ${userDropdownOpen ? 'rotate-180' : ''} size-4`}
             xmlns="http://www.w3.org/2000/svg"

@@ -51,6 +51,7 @@ const Navbar = () => {
         setUserDropdownOpen(false);
       }
     };
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -58,9 +59,13 @@ const Navbar = () => {
   }, []);
 
   const genres = [
-    { name: 'Action' },
-    { name: 'Comedy' },
-    { name: 'Drama' },
+    { name: 'Action', index: 1 },
+    { name: 'Adventure', index: 2 },
+    { name: 'Comedy', index: 4 },
+    { name: 'Drama', index: 8 },
+    { name: 'Romance', index: 22 },
+    { name: 'Sci-Fi', index: 24 },
+    { name: 'Horror', index: 14 },
     // Add more genres as needed
   ];
 
@@ -94,11 +99,14 @@ const Navbar = () => {
                 Genres
               </button>
               {genresDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg z-10">
-                  {genres.map((item, index) => (
+                <div 
+                className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg z-10"
+                ref={genresDropdownRef}
+                >
+                  {genres.map((item) => (
                     <Link
-                      key={index}
-                      to="#"
+                      key={item.index}
+                      to={`/genre/${item.name}/${item.index}`}
                       className="block px-4 py-2 text-sm text-gray-400 hover:bg-gray-700 hover:text-white"
                     >
                       {item.name}

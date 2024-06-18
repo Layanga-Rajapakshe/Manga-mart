@@ -3,8 +3,15 @@ import React from 'react';
 export default function Pagination({ totalPosts, cardPerPage, setCurrentPage, currentPage }) {
   let pages = [];
 
-  for (let i = 1; i <= Math.ceil(totalPosts / cardPerPage); i++) {
-    pages.push(i);
+  if (currentPage <= 3) {
+    for (let index = 1; index < 8; index++) {
+      pages.push(index);  
+    }
+  }
+  else{
+    for (let index = currentPage - 3; index < currentPage + 4; index++) {
+      pages.push(index);  
+    }
   }
 
   return (
