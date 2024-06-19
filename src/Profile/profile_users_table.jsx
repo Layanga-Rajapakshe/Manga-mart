@@ -1,46 +1,45 @@
-import React from 'react'
+import React from 'react';
+import { useGetUsersQuery } from '../redux/api/usersApiSlice';
 
-export default function Profile_users_table() {
-  return (
-    <div>
-        <div className="overflow-x-auto">
-        <div class="relative w-full max-w-full flex-grow flex-1">
-            <h3 class="font-semibold px-4 py-2 text-gray-900 dark:text-gray-50 bg-gray-100">Users</h3>
+
+export default function ProfileUsersTable() {
+    const { data: usersList, isLoading, error } = useGetUsersQuery();
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
+    return (
+        <div>
+            <div className="overflow-x-auto">
+                <div className="relative w-full max-w-full flex-grow flex-1">
+                    <h3 className="font-semibold px-4 py-2 text-gray-900 dark:text-gray-50 bg-gray-100">Users</h3>
+                </div>
+                <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+                    <thead className="text-left rtl:text-right">
+                        <tr>
+                            <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">ID</th>
+                            <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Username</th>
+                            <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Email</th>
+                            <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Admin</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                        {usersList.map((user) => (
+                            <tr className="odd:bg-gray-50" key={user._id}>
+                                <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{user._id}</td>
+                                <td className="whitespace-nowrap px-4 py-2 text-gray-700">{user.username}</td>
+                                <td className="whitespace-nowrap px-4 py-2 text-gray-700">{user.email}</td>
+                                <td className="whitespace-nowrap px-4 py-2 text-gray-700">{user.isAdmin ? 'Yes' : 'No'}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
-            <thead className="ltr:text-left rtl:text-right">
-            <tr>
-                <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Name</th>
-                <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Date of Birth</th>
-                <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Role</th>
-                <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Salary</th>
-            </tr>
-            </thead>
-
-            <tbody className="divide-y divide-gray-200">
-            <tr className="odd:bg-gray-50">
-                <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">John Doe</td>
-                <td className="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
-                <td className="whitespace-nowrap px-4 py-2 text-gray-700">Web Developer</td>
-                <td className="whitespace-nowrap px-4 py-2 text-gray-700">$120,000</td>
-            </tr>
-
-            <tr className="odd:bg-gray-50">
-                <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Jane Doe</td>
-                <td className="whitespace-nowrap px-4 py-2 text-gray-700">04/11/1980</td>
-                <td className="whitespace-nowrap px-4 py-2 text-gray-700">Web Designer</td>
-                <td className="whitespace-nowrap px-4 py-2 text-gray-700">$100,000</td>
-            </tr>
-
-            <tr className="odd:bg-gray-50">
-                <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Gary Barlow</td>
-                <td className="whitespace-nowrap px-4 py-2 text-gray-700">24/05/1995</td>
-                <td className="whitespace-nowrap px-4 py-2 text-gray-700">Singer</td>
-                <td className="whitespace-nowrap px-4 py-2 text-gray-700">$20,000</td>
-            </tr>
-            </tbody>
-        </table>
-        </div>
-    </div>
-  )
+    );
 }

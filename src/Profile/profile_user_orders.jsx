@@ -1,8 +1,8 @@
 import React from 'react';
-import { useGetOrdersQuery   } from '../redux/api/orderApiSlice';
+import { useGetMyOrdersQuery } from '../redux/api/orderApiSlice';
 
 export default function ProfileRecentOrders() {
-    const { data: orders, isLoading, error } = useGetOrdersQuery();
+    const { data: orders, isLoading, error } = useGetMyOrdersQuery();
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -22,7 +22,6 @@ export default function ProfileRecentOrders() {
                     <thead className="text-left rtl:text-right">
                         <tr>
                             <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Order ID</th>
-                            <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">User ID</th>
                             <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Total Price</th>
                             <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Paid</th>
                             <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Delivered</th>
@@ -32,7 +31,6 @@ export default function ProfileRecentOrders() {
                         {orders.map((order) => (
                             <tr className="odd:bg-gray-50" key={order._id}>
                                 <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{order._id}</td>
-                                <td className="whitespace-nowrap px-4 py-2 text-gray-700">{order.user._id}</td>
                                 <td className="whitespace-nowrap px-4 py-2 text-gray-700">${order.totalPrice}</td>
                                 <td className="whitespace-nowrap px-4 py-2 text-gray-700">{order.isPaid ? 'Yes' : 'No'}</td>
                                 <td className="whitespace-nowrap px-4 py-2 text-gray-700">{order.isDelivered ? 'Yes' : 'No'}</td>
