@@ -7,6 +7,7 @@ import NavbarProfile from '../Landing_page/navbar_profile';
 import toast from 'react-hot-toast';
 import { Helmet } from 'react-helmet';
 import SearchBar from './searchbar';
+import weblogo from '../assets/web_logo_bg_removed.png';
 
 const Navbar = () => {
   const location = useLocation();
@@ -125,7 +126,7 @@ const Navbar = () => {
                 </h1>
               ) : (
                 <img 
-                  src='src/assets/web_logo_bg_removed.png' 
+                  src= {weblogo} 
                   alt='web_logo'
                   className='h-16'
                 />

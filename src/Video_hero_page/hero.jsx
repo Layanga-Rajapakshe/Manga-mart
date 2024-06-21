@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import BackgroundVideo from './background_video';
 import Carousel from '../Landing_page/carousal';
+import video1 from '../assets/bg_video1.mp4';
+import video2 from '../assets/bg_video2.mp4';
+import video3 from '../assets/bg_video3.mp4';
+import video4 from '../assets/bg_video4.mp4';
+import video5 from '../assets/bg_video5.mp4';
+import video6 from '../assets/bg_video6.mp4';
+import video7 from '../assets/bg_video7.mp4';
+import video8 from '../assets/bg_video8.mp4';
 
 export default function Hero() {
   const [topManga, setTopManga] = useState([]);
@@ -25,17 +33,16 @@ export default function Hero() {
 
   return (
     <div>
-      <BackgroundVideo videos={[
-        'https://drive.google.com/uc?export=download&id=1fp-t91Zm22nLIfk8kH2E07HuD2dmo37f',
-        'https://drive.google.com/uc?export=download&id=1ZBfePGKa9irs7kewt090aX_bfmQJ5NLA',
-        'https://drive.google.com/uc?export=download&id=1dp_RYsGuenHSb-1DTjARPsQxQS_hanNy',
-        'https://drive.google.com/uc?export=download&id=1p19sxbZUor0mB_PxXRCpui6wmHe1sBwt',
-        'https://drive.google.com/uc?export=download&id=1yz7JZzN3Ym4ylddaDKp5euFYH9_3w59Q',
-        'https://drive.google.com/uc?export=download&id=1BxsPs0DuXTIJctUAFub3KYnOna6m49Ls',
-        'https://drive.google.com/uc?export=download&id=1ZBsrBYOCqa7Qy154REsAXCGCOJd3da7P',
-        'https://drive.google.com/uc?export=download&id=14t3835W37jrIRX5iLNHRxJjliz3uakwD',
+      <BackgroundVideo   videos={[
+        video1,
+        video2,
+        video3,
+        video4,
+        video5,
+        video6,
+        video7,
+        video8
       ]}/>
-
 
       <section className="relative py-12 bg-gray-900 sm:py-16 lg:py-20">
         <div>
