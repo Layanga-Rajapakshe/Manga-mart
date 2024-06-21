@@ -76,7 +76,7 @@ function Footer() {
               fill="currentColor"
             />
           </svg> */}
-          <img src='web_logo' alt='web_logo' className='h-20'/>
+          <img src={web_logo} alt='web_logo' className='h-20'/>
           <h1 style={{ fontFamily: 'Gang of Three, sans-serif' }} className='text-white text-4xl pl-5 my-auto' >Manga Mart</h1>
         </div>
 

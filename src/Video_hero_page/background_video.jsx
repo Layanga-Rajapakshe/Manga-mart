@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const BackgroundVideo = ({ videos }) => {
 
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -14,7 +16,7 @@ const BackgroundVideo = ({ videos }) => {
   }, [videos]);
     
     const handleExplore = () => {
-        window.location.href = '/home';
+        navigate('/home');
     }
 
   return (
