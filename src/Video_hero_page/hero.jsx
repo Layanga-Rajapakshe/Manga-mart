@@ -25,16 +25,17 @@ export default function Hero() {
 
   return (
     <div>
-      <BackgroundVideo   videos={[
-      'https://drive.google.com/file/d/1fp-t91Zm22nLIfk8kH2E07HuD2dmo37f/view?usp=drive_link',
-      'https://drive.google.com/file/d/1ZBfePGKa9irs7kewt090aX_bfmQJ5NLA/view?usp=drive_link ',
-      'https://drive.google.com/file/d/1dp_RYsGuenHSb-1DTjARPsQxQS_hanNy/view?usp=drive_link',
-      'https://drive.google.com/file/d/1p19sxbZUor0mB_PxXRCpui6wmHe1sBwt/view?usp=drive_link',
-      'https://drive.google.com/file/d/1yz7JZzN3Ym4ylddaDKp5euFYH9_3w59Q/view?usp=drive_link',
-      'https://drive.google.com/file/d/1BxsPs0DuXTIJctUAFub3KYnOna6m49Ls/view?usp=drive_link',
-      'https://drive.google.com/file/d/1ZBsrBYOCqa7Qy154REsAXCGCOJd3da7P/view?usp=drive_link',
-      'https://drive.google.com/file/d/14t3835W37jrIRX5iLNHRxJjliz3uakwD/view?usp=drive_link',
+      <BackgroundVideo videos={[
+        'https://drive.google.com/uc?export=download&id=1fp-t91Zm22nLIfk8kH2E07HuD2dmo37f',
+        'https://drive.google.com/uc?export=download&id=1ZBfePGKa9irs7kewt090aX_bfmQJ5NLA',
+        'https://drive.google.com/uc?export=download&id=1dp_RYsGuenHSb-1DTjARPsQxQS_hanNy',
+        'https://drive.google.com/uc?export=download&id=1p19sxbZUor0mB_PxXRCpui6wmHe1sBwt',
+        'https://drive.google.com/uc?export=download&id=1yz7JZzN3Ym4ylddaDKp5euFYH9_3w59Q',
+        'https://drive.google.com/uc?export=download&id=1BxsPs0DuXTIJctUAFub3KYnOna6m49Ls',
+        'https://drive.google.com/uc?export=download&id=1ZBsrBYOCqa7Qy154REsAXCGCOJd3da7P',
+        'https://drive.google.com/uc?export=download&id=14t3835W37jrIRX5iLNHRxJjliz3uakwD',
       ]}/>
+
 
       <section className="relative py-12 bg-gray-900 sm:py-16 lg:py-20">
         <div>
