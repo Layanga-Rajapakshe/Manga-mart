@@ -26,14 +26,14 @@ export default function Hero() {
   return (
     <div>
       <BackgroundVideo   videos={[
-      'src/assets/bg_video1.mp4',
-      'src/assets/bg_video2.mp4',
-      'src/assets/bg_video3.mp4',
-      'src/assets/bg_video4.mp4',
-      'src/assets/bg_video5.mp4',
-      'src/assets/bg_video6.mp4',
-      'src/assets/bg_video7.mp4',
-      'src/assets/bg_video8.mp4',
+      'https://drive.google.com/file/d/1fp-t91Zm22nLIfk8kH2E07HuD2dmo37f/view?usp=drive_link',
+      'https://drive.google.com/file/d/1ZBfePGKa9irs7kewt090aX_bfmQJ5NLA/view?usp=drive_link ',
+      'https://drive.google.com/file/d/1dp_RYsGuenHSb-1DTjARPsQxQS_hanNy/view?usp=drive_link',
+      'https://drive.google.com/file/d/1p19sxbZUor0mB_PxXRCpui6wmHe1sBwt/view?usp=drive_link',
+      'https://drive.google.com/file/d/1yz7JZzN3Ym4ylddaDKp5euFYH9_3w59Q/view?usp=drive_link',
+      'https://drive.google.com/file/d/1BxsPs0DuXTIJctUAFub3KYnOna6m49Ls/view?usp=drive_link',
+      'https://drive.google.com/file/d/1ZBsrBYOCqa7Qy154REsAXCGCOJd3da7P/view?usp=drive_link',
+      'https://drive.google.com/file/d/14t3835W37jrIRX5iLNHRxJjliz3uakwD/view?usp=drive_link',
       ]}/>
 
       <section className="relative py-12 bg-gray-900 sm:py-16 lg:py-20">
