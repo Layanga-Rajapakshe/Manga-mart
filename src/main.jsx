@@ -29,6 +29,9 @@ import Profile from './Profile/profile.jsx';
 import Orders from './Profile/profile_orders.jsx';
 import Genrepage from './Genres/genrepage.jsx';
 import Search from './Search_page.jsx/search.jsx';
+import { disableReactDevTools } from '@fvilers/disable-react-devtools';
+
+if( process.env.NODE_ENV === 'development' ) disableReactDevTools();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
