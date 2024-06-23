@@ -6,25 +6,23 @@ const favoriteSlice = createSlice({
   initialState: [],
   reducers: {
     addToFavorites: (state, action) => {
-      // Checkif the product is not already favorites
-      if (!state.some((product) => product.mal_id === action.payload.mal_id)) {
+      const productExists = state.some((product) => product.mal_id === action.payload.mal_id);
+      if (!productExists) {
         state.push(action.payload);
         toast.success("Added to favorites");
       }
     },
     removeFromFavorites: (state, action) => {
-      // Remove the product with the matching ID
+      const updatedState = state.filter((product) => product.mal_id !== action.payload.mal_id);
       toast.error("Removed from favorites");
-      return state.filter((product) => product.mal_id !== action.payload.mal_id);
+      return updatedState;
     },
     setFavorites: (state, action) => {
-      // Set the favorites from localStorage
       return action.payload;
     },
   },
 });
 
-export const { addToFavorites, removeFromFavorites, setFavorites } =
-  favoriteSlice.actions;
+export const { addToFavorites, removeFromFavorites, setFavorites } = favoriteSlice.actions;
 export const selectFavoriteProduct = (state) => state.favorites;
 export default favoriteSlice.reducer;
