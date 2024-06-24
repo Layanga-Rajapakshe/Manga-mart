@@ -38,10 +38,9 @@ const App = () => {
           <Route path="/product/:id" element={<Product />} />
           <Route path="/genre/:name/:genre" element={<Genrepage />} />
           <Route path="/search/:query" element={<Search />} />
-          {/* Catch-all route for 404 Not Found */}
-          <Route path="*" element={<Errorpage />} />
 
-          <Route path="" element={<PrivateRoute />}>
+          {/* Private routes */}
+          <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/shipping" element={<Shipping />} />
@@ -51,6 +50,9 @@ const App = () => {
             <Route path="/wishlist" element={<Favourites />} />
             <Route path="/cart" element={<Cart />} />
           </Route>
+
+          {/* Catch-all route for 404 Not Found */}
+          <Route path="*" element={<Errorpage />} />
         </Routes>
         <Toaster />
       </div>
