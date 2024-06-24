@@ -59,7 +59,7 @@ const Search = () => {
           </div>
 
           <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {manga.map((mangaItem,index) => (
+            {manga.map((mangaItem, index) => (
               <Card key={index} topManga={mangaItem} />
             ))}
           </ul>
@@ -67,7 +67,7 @@ const Search = () => {
           {/* Add pagination controls */}
           <div className="mt-8 flex justify-center">
               <Pagination
-                totalPosts={pagination.total}
+                totalPosts={pagination.items ? pagination.items.total : 0}
                 cardPerPage={cardPerPage}
                 setCurrentPage={setCurrentPage}
                 currentPage={currentPage}

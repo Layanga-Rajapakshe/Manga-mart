@@ -3,6 +3,7 @@ import Sidebar from './profile_sidebar';
 import { useGetMyOrdersQuery, useGetOrdersQuery } from '../redux/api/orderApiSlice';
 import Loader from '../Components/Loader';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default function ProfileOrders() {
   const { userInfo } = useSelector((state) => state.auth);
@@ -16,7 +17,7 @@ export default function ProfileOrders() {
           <tr>
             <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Items</th>
             <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">ID</th>
-            {userInfo.isAdmin ? <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">User</th>: ''}
+            {userInfo.isAdmin ? <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">User</th> : ''}
             <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Date</th>
             <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Total</th>
             <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Paid</th>
@@ -37,9 +38,11 @@ export default function ProfileOrders() {
               <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                 {order._id}
               </td>
-              {userInfo.isAdmin ? <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                {order.user.username}
-              </td>: ''}
+              {userInfo.isAdmin ? (
+                <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                  {order.user.username}
+                </td>
+              ) : ''}
               <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                 {order.createdAt.substring(0, 10)}
               </td>
@@ -53,12 +56,12 @@ export default function ProfileOrders() {
                 {order.isDelivered ? order.deliveredAt.substring(0, 10) : 'No'}
               </td>
               <td className="whitespace-nowrap px-4 py-2">
-                <a
-                  href={`/order/${order._id}`}
+                <Link
+                  to={`/order/${order._id}`}
                   className="inline-block rounded bg-blue-600 px-4 py-2 text-xs font-medium text-white hover:bg-blue-500"
                 >
                   View Order
-                </a>
+                </Link>
               </td>
             </tr>
           ))}

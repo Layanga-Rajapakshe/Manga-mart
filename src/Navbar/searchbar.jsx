@@ -11,8 +11,10 @@ const SearchBar = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //after submission redirect to search page
-    navigate(`/search/${searchQuery}`);
+    if (searchQuery.trim()) {
+      // After submission, redirect to search page
+      navigate(`/search/${searchQuery}`);
+    }
   };
 
   return (
