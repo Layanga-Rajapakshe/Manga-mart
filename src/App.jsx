@@ -21,6 +21,7 @@ import Profile from './Profile/profile';
 import Orders from './Profile/profile_orders';
 import Genrepage from './Genres/genrepage';
 import Search from './Search_page.jsx/search';
+import Errorpage from './404 page/errorpage';
 
 const App = () => {
   return (
@@ -37,6 +38,8 @@ const App = () => {
           <Route path="/product/:id" element={<Product />} />
           <Route path="/genre/:name/:genre" element={<Genrepage />} />
           <Route path="/search/:query" element={<Search />} />
+          {/* Catch-all route for 404 Not Found */}
+          <Route path="*" element={<Errorpage />} />
 
           <Route path="" element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
