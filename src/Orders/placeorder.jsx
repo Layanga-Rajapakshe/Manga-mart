@@ -9,6 +9,7 @@ import Message from "../Components/Message";
 
 const PlaceOrder = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
 
@@ -18,9 +19,7 @@ const PlaceOrder = () => {
     if (!cart.shippingAddress.address) {
       navigate("/shipping");
     }
-  }, [cart.paymentMethod, cart.shippingAddress.address, navigate]);
-
-  const dispatch = useDispatch();
+  }, [cart.shippingAddress.address, navigate]);
 
   const placeOrderHandler = async () => {
     try {
@@ -41,7 +40,6 @@ const PlaceOrder = () => {
       toast.error(error.data?.message || 'Failed to place order');
     }
   };
-  
 
   return (
     <div className="pt-24">
@@ -78,9 +76,9 @@ const PlaceOrder = () => {
                       <Link to={`/product/${item.product}`}>{item.title}</Link>
                     </td>
                     <td className="p-2">{item.qty}</td>
-                    <td className="p-2">$58</td>
+                    <td className="p-2">${item.price.toFixed(2)}</td>
                     <td className="p-2">
-                      $ {(item.qty * 58).toFixed(2)}
+                      $ {(item.qty * item.price).toFixed(2)}
                     </td>
                   </tr>
                 ))}
@@ -95,23 +93,23 @@ const PlaceOrder = () => {
             <ul className="text-lg">
               <li>
                 <span className="font-semibold mb-4">Items:</span> $
-                {cart.itemsPrice}
+                {cart.itemsPrice.toFixed(2)}
               </li>
               <li>
                 <span className="font-semibold mb-4">Shipping:</span> $
-                {cart.shippingPrice}
+                {cart.shippingPrice.toFixed(2)}
               </li>
               <li>
                 <span className="font-semibold mb-4">Tax:</span> $
-                {cart.taxPrice}
+                {cart.taxPrice.toFixed(2)}
               </li>
               <li>
                 <span className="font-semibold mb-4">Total:</span> $
-                {cart.totalPrice}
+                {cart.totalPrice.toFixed(2)}
               </li>
             </ul>
 
-            {error && <Message variant="danger">{error.data.message}</Message>}
+            {error && <Message variant="danger">{error.data?.message}</Message>}
 
             <div>
               <h2 className="text-2xl font-semibold mb-4">Shipping</h2>
@@ -131,12 +129,10 @@ const PlaceOrder = () => {
           <button
             type="button"
             className="bg-blue-600 hover:bg-blue-500 text-white py-2 px-4 rounded-full text-lg w-full mt-4"
-            disabled={cart.cartItems === 0}
+            disabled={cart.cartItems.length === 0}
             onClick={placeOrderHandler}
           >
-            <span className="">
-              Place Order
-            </span>
+            Place Order
           </button>
 
           {isLoading && (

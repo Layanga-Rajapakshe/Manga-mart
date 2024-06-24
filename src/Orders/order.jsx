@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
-import Messsage from "../Components/Message";
+import Message from "../Components/Message";
 import Loader from "../Components/Loader";
 
 import {
@@ -24,22 +24,20 @@ const Order = () => {
   } = useGetOrderDetailsQuery(orderId);
 
   const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
-  
-  const [deliverOrder, { isLoading: loadingDeliver }] =
-    useDeliverOrderMutation();
+  const [deliverOrder, { isLoading: loadingDeliver }] = useDeliverOrderMutation();
   const { userInfo } = useSelector((state) => state.auth);
 
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
   const {
     data: paypal,
-    isLoading: loadingPaPal,
-    error: errorPayPal,
+    isLoading: loadingPaypal,
+    error: errorPaypal,
   } = useGetPaypalClientIdQuery();
 
   useEffect(() => {
-    if (!errorPayPal && !loadingPaPal && paypal.clientId) {
-      const loadingPaPalScript = async () => {
+    if (!errorPaypal && !loadingPaypal && paypal?.clientId) {
+      const loadPaypalScript = async () => {
         paypalDispatch({
           type: "resetOptions",
           value: {
@@ -52,14 +50,14 @@ const Order = () => {
 
       if (order && !order.isPaid) {
         if (!window.paypal) {
-          loadingPaPalScript();
+          loadPaypalScript();
         }
       }
     }
-  }, [errorPayPal, loadingPaPal, order, paypal, paypalDispatch]);
+  }, [errorPaypal, loadingPaypal, order, paypal, paypalDispatch]);
 
-  function onApprove(data, actions) {
-    return actions.order.capture().then(async function (details) {
+  const onApprove = (data, actions) => {
+    return actions.order.capture().then(async (details) => {
       try {
         await payOrder({ orderId, details });
         refetch();
@@ -68,9 +66,9 @@ const Order = () => {
         toast.error(error?.data?.message || error.message);
       }
     });
-  }
+  };
 
-  function createOrder(data, actions) {
+  const createOrder = (data, actions) => {
     return actions.order
       .create({
         purchase_units: [{ amount: { value: order.totalPrice } }],
@@ -78,27 +76,31 @@ const Order = () => {
       .then((orderID) => {
         return orderID;
       });
-  }
+  };
 
-  function onError(err) {
+  const onError = (err) => {
     toast.error(err.message);
-  }
+  };
 
   const deliverHandler = async () => {
-    await deliverOrder(orderId);
-    refetch();
+    try {
+      await deliverOrder(orderId);
+      refetch();
+    } catch (error) {
+      toast.error(error?.data?.message || error.message);
+    }
   };
 
   return isLoading ? (
     <Loader />
   ) : error ? (
-    <Messsage variant="danger">{error.data.message}</Messsage>
+    <Message variant="danger">{error.data.message}</Message>
   ) : (
     <div className="container flex flex-col md:flex-row pt-24 pb-12 mx-auto">
       <div className="md:w-2/3 pr-4">
         <div className="border gray-300 mt-5 pb-4 mb-5">
           {order.orderItems.length === 0 ? (
-            <Messsage>Order is empty</Messsage>
+            <Message>Order is empty</Message>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-[80%]">
@@ -149,8 +151,7 @@ const Order = () => {
           </p>
 
           <p className="mb-4">
-            <strong className="text-black">Name:</strong>{" "}
-            {order.user.username}
+            <strong className="text-black">Name:</strong> {order.user.username}
           </p>
 
           <p className="mb-4">
@@ -158,20 +159,18 @@ const Order = () => {
           </p>
 
           <p className="mb-4">
-            <strong className="text-black">Address:</strong>{" "}
-            {order.shippingAddress.address}, {order.shippingAddress.city}{" "}
+            <strong className="text-black">Address:</strong> {order.shippingAddress.address}, {order.shippingAddress.city}{" "}
             {order.shippingAddress.postalCode}, {order.shippingAddress.country}
           </p>
 
           <p className="mb-4">
-            <strong className="text-black">Method:</strong>{" "}
-            {order.paymentMethod}
+            <strong className="text-black">Method:</strong> {order.paymentMethod}
           </p>
 
           {order.isPaid ? (
-            <Messsage variant="success">Paid on {order.paidAt}</Messsage>
+            <Message variant="success">Paid on {order.paidAt}</Message>
           ) : (
-            <Messsage variant="danger">Not paid</Messsage>
+            <Message variant="danger">Not paid</Message>
           )}
         </div>
 
@@ -195,31 +194,20 @@ const Order = () => {
 
         {!order.isPaid && (
           <div>
-            {loadingPay && <Loader />}{" "}
+            {loadingPay && <Loader />}
             {isPending ? (
               <Loader />
             ) : (
               <div>
-                <div>
-                  <PayPalButtons
-                    createOrder={createOrder}
-                    onApprove={onApprove}
-                    onError={onError}
-                  ></PayPalButtons>
-                </div>
+                <PayPalButtons
+                  createOrder={createOrder}
+                  onApprove={onApprove}
+                  onError={onError}
+                />
               </div>
             )}
           </div>
         )}
-
-        {isLoading && (
-            <div className="text-center mt-4">
-              <svg
-                className="animate-spin h-5 w-5 mr-3 ..."
-                viewBox="0 0 24 24"
-              ></svg>
-            </div>
-          )}
 
         {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
           <div>
@@ -227,8 +215,9 @@ const Order = () => {
               type="button"
               className="bg-blue-600 text-white w-full py-2"
               onClick={deliverHandler}
+              disabled={loadingDeliver}
             >
-              Mark As Delivered
+              {loadingDeliver ? 'Loading...' : 'Mark As Delivered'}
             </button>
           </div>
         )}
