@@ -93,19 +93,19 @@ const PlaceOrder = () => {
             <ul className="text-lg">
               <li>
                 <span className="font-semibold mb-4">Items:</span> $
-                {cart.itemsPrice.toFixed(2)}
+                {cart.itemsPrice}
               </li>
               <li>
                 <span className="font-semibold mb-4">Shipping:</span> $
-                {cart.shippingPrice.toFixed(2)}
+                {cart.shippingPrice}
               </li>
               <li>
                 <span className="font-semibold mb-4">Tax:</span> $
-                {cart.taxPrice.toFixed(2)}
+                {cart.taxPrice}
               </li>
               <li>
                 <span className="font-semibold mb-4">Total:</span> $
-                {cart.totalPrice.toFixed(2)}
+                {cart.totalPrice}
               </li>
             </ul>
 
