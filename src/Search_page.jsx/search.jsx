@@ -15,7 +15,7 @@ const Search = () => {
   const fetchManga = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`https://api.jikan.moe/v4/manga?q=${query}&page=${currentPage}&sfw`);
+      const response = await fetch(`https://api.jikan.moe/v4/manga?q=${query}&page=${currentPage}`);
       if (!response.ok) {
         throw new Error('Failed to fetch data');
       }
