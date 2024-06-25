@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Card from '../Home_page/card';
 import { useParams } from 'react-router-dom';
 import Pagination from '../Home_page/pagination';
+import ErrorBoundary from './ErrorBoundary'; // Adjust the path as needed
 
 const Search = () => {
   const { query } = useParams();
@@ -79,4 +80,8 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default () => (
+  <ErrorBoundary>
+    <Search />
+  </ErrorBoundary>
+);
