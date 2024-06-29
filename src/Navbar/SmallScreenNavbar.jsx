@@ -58,7 +58,7 @@ const SmallScreenNavbar = ({
               )}
             </Link>
           </div>
-          <div className="flex lg:hidden">
+          <div className="">
             <button
               type="button"
               className="text-white"
