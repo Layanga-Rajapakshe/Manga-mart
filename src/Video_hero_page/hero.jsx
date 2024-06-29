@@ -44,6 +44,7 @@ export default function Hero() {
         video8
       ]}/>
 
+
       <section className="relative py-12 bg-gray-900 sm:py-16 lg:py-20">
         <div>
           <h1 className="text-3xl font-bold text-center mt-8 text-white">Top-Selling</h1>

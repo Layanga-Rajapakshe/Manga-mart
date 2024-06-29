@@ -4,6 +4,20 @@ import SearchBar from './searchbar';
 import NavbarProfile from '../Landing_page/navbar_profile';
 import weblogo from '../assets/web_logo_bg_removed.png';
 import { Helmet } from 'react-helmet';
+import { motion, useViewportScroll, useTransform } from "framer-motion";
+
+const dropdownVariants = {
+  open: {
+    opacity: 1,
+    scale: 1,
+    transition: { type: 'spring', stiffness: 300, damping: 24 }
+  },
+  closed: {
+    opacity: 0,
+    scale: 0.8,
+    transition: { duration: 0.2 }
+  }
+};
 
 const LargeScreenNavbar = ({
   isLandingPage,
@@ -16,22 +30,30 @@ const LargeScreenNavbar = ({
   const [genresDropdownOpen, setGenresDropdownOpen] = useState(false);
   const genresDropdownRef = useRef(null);
 
+  const { scrollY } = useViewportScroll();
+  const background = useTransform(
+    scrollY,
+    [0, 100],
+    ["rgba(0, 183, 255, 0)", "rgba(0, 183, 255, 1)"]
+  );
+  const height = useTransform(scrollY, [0, 100], [120, 60]);
+
   return (
     <header
       className={`${
         isLandingPage
           ? color
             ? 'bg-gray-900 py-4 fixed w-full z-20'
-            : 'bg-transparent fixed z-20 w-full py-4'
+            : 'bg-transparent fixed z-20 w-full py-8'
           : 'bg-gray-900 py-4 fixed w-full z-20'
-      } transition-all duration-500`}
+      } transition-all duration-1000`}
     >
       <Helmet>
         <link href="https://fonts.cdnfonts.com/css/gang-of-three" rel="stylesheet" />
       </Helmet>
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-        <nav className={`hidden lg:flex md:items-center md:space-x-12 ${expanded ? 'block' : 'hidden'}`}>
+          <nav className={`hidden lg:flex md:items-center md:space-x-12 ${expanded ? 'block' : 'hidden'}`}>
             <Link to="/home" className="text-sm font-normal text-gray-400 hover:text-white transition-all duration-500">
               Home Page
             </Link>
@@ -45,22 +67,22 @@ const LargeScreenNavbar = ({
               >
                 Genres
               </button>
-              {genresDropdownOpen && (
-                <div 
+              <motion.div
+                initial={false}
+                animate={genresDropdownOpen ? 'open' : 'closed'}
+                variants={dropdownVariants}
                 className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg z-10"
-                ref={genresDropdownRef}
-                >
-                  {genres.map((item) => (
-                    <Link
-                      key={item.index}
-                      to={`/genre/${item.name}/${item.index}`}
-                      className="block px-4 py-2 text-sm text-gray-400 hover:bg-gray-700 hover:text-white"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
+              >
+                {genres.map((item) => (
+                  <Link
+                    key={item.index}
+                    to={`/genre/${item.name}/${item.index}`}
+                    className="block px-4 py-2 text-sm text-gray-400 hover:bg-gray-700 hover:text-white"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </motion.div>
             </div>
           </nav>
           <div className={` ${userInfo ? 'pl-6' : 'pl-16'} shrink-0 justify-center`}>
@@ -79,7 +101,7 @@ const LargeScreenNavbar = ({
             </Link>
           </div>
           <div className="hidden lg:flex space-x-2">
-          <SearchBar />
+            <SearchBar />
             {!userInfo && (
               <>
                 <Link
@@ -130,9 +152,9 @@ const LargeScreenNavbar = ({
             )}
             {userInfo && <NavbarProfile userInfo={userInfo} logoutHandler={handleLogout} />}
           </div>
-          </div>
-          </div>
-          </header>
+        </div>
+      </div>
+    </header>
   );
 };
 

@@ -61,7 +61,7 @@ const Navbar = () => {
         />
       </div>
       {/* Show SmallScreenNavbar on small screens */}
-      <div className="block md:hidden">
+      <div className="block lg:hidden">
         <SmallScreenNavbar
           isLandingPage={isLandingPage}
           color={color}
