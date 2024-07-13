@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getFavoritesCount } from '../Utils/localStorage';
 import { getCartCount } from '../Utils/cartUtils';
 import { motion } from "framer-motion";
+import { useLogoutMutation } from '../redux/api/usersApiSlice';
 
 const itemVariants = {
   open: {
@@ -49,6 +50,7 @@ const UserMenu = ({ userInfo, logoutHandler }) => {
   const cartCount = getCartCount();
   const wishlistCount = getFavoritesCount();
   const totalCount = cartCount + wishlistCount;
+  const [logout, {isLoading}] = useLogoutMutation();
 
   return (
     userInfo && (
@@ -137,9 +139,10 @@ const UserMenu = ({ userInfo, logoutHandler }) => {
             <motion.div variants={itemVariants}>
               <button
                 onClick={logoutHandler}
+                disabled={isLoading}
                 className="w-full text-right flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-red-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
               >
-                Logout
+                {isLoading ? 'Logging out...' : 'Logout'}
               </button>
             </motion.div>
           </div>
