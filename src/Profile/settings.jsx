@@ -1,5 +1,8 @@
 import React from 'react'
 import Sidebar from './profile_sidebar'
+import image1 from '../assets/Update_image.jpeg'
+import web_logo1 from '../assets/web_logo_bg_removed.png';
+import web_logo2  from '../assets/web_logo.png';
 
 export default function settings() {
   return (
@@ -14,8 +17,8 @@ export default function settings() {
             <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
             <img
                 alt=""
-                src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-                className="absolute inset-0 h-full w-full object-cover"
+                src={image1}
+                className="absolute inset-0 h-full w-full object-cover brightness-50"
             />
             </aside>
 
@@ -26,9 +29,9 @@ export default function settings() {
                 <a className="block text-blue-600" href="/home">
                 <span className="sr-only">Home</span>
                 <img 
-                src='src\assets\web_logo.png'
+                src={web_logo1}
                 alt='web_logo'
-                className='h-12 w-auto sm:h-16'
+                className='h-12 w-auto sm:h-16 brightness-200'
                 ></img>
                 </a>
 

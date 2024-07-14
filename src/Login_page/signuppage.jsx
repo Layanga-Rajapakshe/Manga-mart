@@ -6,6 +6,7 @@ import { setCredentials } from "../redux/features/authSlice";
 import { toast } from "react-hot-toast";
 import web_logo from '../assets/web_logo_bg_removed.png';
 import web_logo1 from '../assets/web_logo.png'
+import image1 from '../assets/Signup_image.jpeg'
 
 export default function SignupPage() {
   const [username, setName] = useState("");
@@ -55,13 +56,13 @@ export default function SignupPage() {
           <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
             <img
               alt=""
-              src="https://images.unsplash.com/photo-1617195737496-bc30194e3a19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-              className="absolute inset-0 h-full w-full object-cover opacity-80"
+              src={image1}
+              className="absolute inset-0 h-full w-full object-cover opacity-80 brightness-50"
             />
             <div className="hidden lg:relative lg:block lg:p-12">
               <Link className="block text-white" to="/">
                 <span className="sr-only">Home</span>
-                <img src={web_logo} alt='web_logo' className='h-20'/> 
+                <img src={web_logo} alt='web_logo' className='h-20 brightness-200'/> 
               </Link>
               <h2 className="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
                 Welcome to Manga Mart
