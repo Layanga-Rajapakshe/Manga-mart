@@ -29,7 +29,7 @@ export default function settings() {
                 <a className="block text-blue-600" href="/home">
                 <span className="sr-only">Home</span>
                 <img 
-                src={web_logo1}
+                src={web_logo2}
                 alt='web_logo'
                 className='h-12 w-auto sm:h-16 brightness-200'
                 ></img>
