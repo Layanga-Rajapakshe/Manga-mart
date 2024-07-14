@@ -9,7 +9,7 @@ export default function settings() {
     <div className="container mx-auto flex pt-24 pb-5">
     <Sidebar />
     {/* Main content */}
-    <div className="flex-1 bg-white">
+    <div className="flex-1 bg-gray-600">
       {/* Your main content goes here */}
       <div className=''>
         <section className="">
@@ -29,7 +29,7 @@ export default function settings() {
                 <a className="block text-blue-600" href="/home">
                 <span className="sr-only">Home</span>
                 <img 
-                src={web_logo2}
+                src={web_logo1}
                 alt='web_logo'
                 className='h-12 w-auto sm:h-16 brightness-200'
                 ></img>
