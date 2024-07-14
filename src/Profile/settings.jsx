@@ -9,7 +9,7 @@ export default function settings() {
     <div className="container mx-auto flex pt-24 pb-5">
     <Sidebar />
     {/* Main content */}
-    <div className="flex-1 bg-gray-200">
+    <div className="flex-1 bg-white">
       {/* Your main content goes here */}
       <div className=''>
         <section className="">
